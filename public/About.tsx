@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../components/Header';
+import Header from '../src/components/Header';
 
 const About: React.FC = () => {
     return (
@@ -10,6 +10,7 @@ const About: React.FC = () => {
                 <h1 className="text-5xl font-extrabold text-center mb-12">
                     Get to Know Me
                 </h1>
+
 
                 <div className="flex flex-col md:flex-row items-start md:items-stretch justify-between gap-12">
 

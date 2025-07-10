@@ -26,7 +26,7 @@ const Main: React.FC = () => {
                 {/* Right */}
                 <div className="md:w-1/2 mt-10 md:mt-0 flex justify-center">
                     <img
-                        src="../src/assets/me.jpg"
+                        src="me.jpg"
                         alt="Hack4Gov"
                         className="w-[300px] h-[400px] rounded-lg"
                     />
@@ -49,7 +49,7 @@ const Main: React.FC = () => {
                 {/* Right */}
                 <div className="md:w-1/2 mt-10 md:mt-0 flex justify-center">
                     <img
-                        src="../src/assets/ez.jpg"
+                        src="ez.jpg"
                         alt="Hack4Gov"
                         className="w-[400px] h-[400px] rounded-lg"
                     />
@@ -75,7 +75,7 @@ const Main: React.FC = () => {
                 {/* Right */}
                 <div className="md:w-1/2 mt-10 md:mt-0 flex justify-center">
                     <img
-                        src="../src/assets/h4h1.jpg"
+                        src="h4h1.jpg"
                         alt="Hack4Gov"
                         className="w-[350px] h-[600px] rounded-lg"
                     />
@@ -102,7 +102,7 @@ const Main: React.FC = () => {
                 {/* Right */}
                 <div className="md:w-1/2 mt-10 md:mt-0 flex justify-center">
                     <img
-                        src="../src/assets/DEVels.jpg"
+                        src="DEVels.jpg"
                         alt="Hack4Gov"
                         className="w-[500px] h-[400px] rounded-lg"
                     />

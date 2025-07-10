@@ -6,19 +6,19 @@ const Footer: React.FC = () => {
         <footer className="bg-gradient-to-br from-gray-900 to-gray-500  text-white py-2  px-8 flex flex-col sm:flex-row justify-between items-center">
 
             <div className='flex flex-row items-start '>
-                <img src='../src/assets/isat.png'
+                <img src='isat.png'
                     title='Iloilo State University of Science and Technology'
                     className='w-12 h-12 rounded-sm m-2 transition transform hover:scale-150'
                 >
                 </img>
 
-                <img src='../src/assets/kwadra.png'
+                <img src='kwadra.png'
                     title='Kwadra TBI'
                     className='w-12 h-12 rounded-lg m-2 transition transform hover:scale-150'
                 >
                 </img>
 
-                <img src='../src/assets/isatech.png'
+                <img src='isatech.png'
                     title='ISATECH Society'
                     className='w-12 h-12 rounded-lg m-2 transition transform hover:scale-150'
                 >

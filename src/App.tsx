@@ -1,7 +1,7 @@
 import './App.css'
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import About from './pages/About'
+import About from '../public/About'
 import Landing from './landing'
 import Projects from './pages/Projects';
 import './index.css'
