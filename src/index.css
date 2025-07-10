@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.particle-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.particle-background::before {
+  content: '';
+  position: absolute;
+  width: 300%;
+  height: 300%;
+  background: radial-gradient(white 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.1;
+  animation: moveParticles 60s linear infinite;
+}
+
+@keyframes moveParticles {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-25%, -25%);
+  }
+}
+
+
