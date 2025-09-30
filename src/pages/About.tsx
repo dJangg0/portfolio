@@ -18,8 +18,10 @@ const About: React.FC = () => {
                         <h2 className="text-3xl font-bold mb-4 border-b border-gray-500 pb-2">About Me</h2>
                         <p className="text-gray-300 leading-relaxed">
                             I’m Leandro Jose Untal — a driven and creative undergraduate developer from the Philippines.
-                            My journey in tech has been shaped by hands-on experience in full-stack development,
-                            AI/ML research, cybersecurity, and innovative cross-platform app development.
+                            My journey in tech has been shaped by hands-on experience in full-stack development, AI/ML research, 
+                            cybersecurity, and innovative cross-platform app development.
+                            I consider myself a versatile developer, able to adapt to different fields and challenges. However, I aspire to focus more deeply on a single career path — either in software development or cybersecurity red teaming — 
+                            where I can further sharpen my skills and make a lasting impact.
                         </p>
                         <p className="text-gray-300 leading-relaxed mt-4">
                             I’ve had the privilege of competing in and winning national hackathons such as

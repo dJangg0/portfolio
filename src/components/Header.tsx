@@ -19,8 +19,8 @@ const Heading: React.FC = () => {
 
     const handleDownload = () => {
         const link = document.createElement("a");
-        link.href = "ResumeLatest.pdf";
-        link.download = "ResumeLatest.pdf";
+        link.href = "resume.pdf";
+        link.download = "My Resume.pdf";
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);

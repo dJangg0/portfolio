@@ -1,4 +1,4 @@
-import { FaInstagram, FaTwitter, FaLinkedin, FaGithub } from 'react-icons/fa';
+import { FaLinkedin, FaGithub,  } from 'react-icons/fa';
 import React from 'react';
 
 const Footer: React.FC = () => {
@@ -30,23 +30,7 @@ const Footer: React.FC = () => {
                 <div className='flex flex-col'>
 
                     <div className="flex space-x-4 text-white text-2xl">
-                        <a href="https://www.instagram.com/lndrjs_/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            title="Instagram">
-                            <FaInstagram className="hover:text-pink-500 transition transform hover:scale-150" />
-                        </a>
-
-                        <a href="https://x.com/joselang_69420"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            title="Twitter"
-
-                        >
-
-                            <FaTwitter className="hover:text-blue-400 transition transform hover:scale-150" />
-                        </a>
-
+                        
                         <a
                             href="https://www.linkedin.com/in/leandro-jose-untal-a82864291/"
                             target="_blank"
@@ -67,6 +51,7 @@ const Footer: React.FC = () => {
                     </div>
 
                     <p className=''>Contact me: 0961 909 8620</p>
+                    <p className=''>Gmail: lndrjs.untal@gmail.com</p>
                 </div>
             </div>
         </footer>
