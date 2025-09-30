@@ -21,7 +21,7 @@ const About: React.FC = () => {
                             My journey in tech has been shaped by hands-on experience in full-stack development, AI/ML research, 
                             cybersecurity, and innovative cross-platform app development.
                             I consider myself a versatile developer, able to adapt to different fields and challenges. However, I aspire to focus more deeply on a single career path — either in software development or cybersecurity red teaming — 
-                            where I can further sharpen my skills and make a lasting impact.
+                            where I can further sharpen my skills and make a long lasting impact.
                         </p>
                         <p className="text-gray-300 leading-relaxed mt-4">
                             I’ve had the privilege of competing in and winning national hackathons such as
