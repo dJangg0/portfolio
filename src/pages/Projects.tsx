@@ -21,9 +21,8 @@ const Projects: React.FC = () => {
         },
         {
             imageUrl: "ojt1.png",
-            title: " 'Assencify' Status:On-going",
-            description: "An Screening and Assessment Tool designed to streamline applicant evaluation using a responsive and user-friendly interface. Built with Node.js,React Ionic, Tailwind CSS, and TypeScript, this cross-platform solution ensures accessibility across both mobile and web — enabling seamless screening wherever you go.",
-
+            title: " 'THRIBO APP' Status:On-going",
+            description: "An Screening and Assessment Tool designed to streamline applicant evaluation using a responsive and user-friendly interface. Built with Node.js,React Ionic, Tailwind CSS, and TypeScript, this cross-platform solution ensures accessibility across both mobile and web — enabling seamless screening wherever you go. Access : https://thribo-app.web.app/",
         },
         {
             imageUrl: "ppe.png",
