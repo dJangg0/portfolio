@@ -46,7 +46,6 @@ const About: React.FC = () => {
                             <li><strong>AI & Tools:</strong> TensorFlow Lite, CNN Models, FFmpeg, MediaPipe</li>
                             <li><strong>Cybersecurity:</strong> Kali Linux, Wireshark, Nmap, OSINT tools</li>
                             <li><strong>Databases:</strong> Firebase, MySQL, PostgreSQL, Supabase</li>
-                            <li><strong>Tools:</strong> GitHub, NetBeans, WordPress, GoHighLevel, XAMPP</li>
                             <li><strong>Soft Skills:</strong> Adaptable, Detail-Oriented, Problem-Solver, Team Player</li>
                         </ul>
                     </div>
