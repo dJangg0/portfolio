@@ -1,0 +1,407 @@
+---
+import HeroCanvas from '../components/HeroCanvas';
+import '../styles/global.css';
+
+const projects = [
+  {
+    number: '01',
+    kind: 'CASHLESS CAMPUS',
+    title: 'Online Coop',
+    description:
+      'A digital payment and transaction system for a school cafeteria, with secure sales tracking for admins and a simple balance and checkout flow for students.',
+    stack: ['Node.js', 'React', 'TypeScript', 'Firebase', 'OAuth'],
+    screenshots: ['/coop.png'],
+  },
+  {
+    number: '02',
+    kind: 'CYBERSECURITY LAB',
+    title: 'Hackafest Vulnerable Web App',
+    description:
+      'A deliberately vulnerable practice environment for web exploitation and CTF preparation, built to help learners sharpen their defensive and offensive security skills.',
+    stack: ['Web security', 'CTF', 'Full-stack'],
+    screenshots: ['/hack1.png', '/hack2.png'],
+  },
+  {
+    number: '03',
+    kind: 'CROSS-PLATFORM APP',
+    title: 'Thribo Screening Tool',
+    description:
+      'A responsive screening and assessment tool that streamlines applicant evaluation across mobile and web, with a clear flow for reviewing and managing candidates.',
+    stack: ['Ionic React', 'Node.js', 'TypeScript', 'Tailwind'],
+    screenshots: ['/ojt1.png', '/ojt2.png'],
+    href: 'https://thribo-app.web.app/',
+  },
+  {
+    number: '04',
+    kind: 'CONNECTED SYSTEMS',
+    title: 'Live Electrical Monitor',
+    description:
+      'A connected monitoring system for voltage, current, and temperature. Socket-driven updates surface anomalies quickly and send alerts through a mobile-friendly dashboard.',
+    stack: ['Node.js', 'WebSockets', 'Realtime UI', 'IoT'],
+    screenshots: ['/ppe.png', '/ppe1.png'],
+  },
+  {
+    number: '05',
+    kind: 'LOCATION-AWARE HEALTH TECH',
+    title: 'AbTech Emergency Response',
+    description:
+      'A rapid-response mobile concept that helps responders locate incidents, provides screening tools, and uses Dijkstra routing to find a nearby response team.',
+    stack: ['Geospatial', 'Routing', 'Mobile', 'Health tech'],
+    screenshots: ['/h4h1.jpg'],
+  },
+];
+
+const fieldNotes = [
+  {
+    image: '/ez.jpg',
+    secondaryImage: '/ez1.jpg',
+    label: 'HACK4GOV · REGION 6',
+    title: 'Leading under pressure',
+    detail:
+      'Led the ISAT U team through a day-long capture-the-flag competition and took the top spot at the 2024 regional finals.',
+  },
+  {
+    image: '/h4h1.jpg',
+    label: 'HACK4HEALTH · TOP 10 FINALIST',
+    title: 'Technology with a human outcome',
+    detail:
+      'Built AbTech with a team at the DOH Hack4Health national finals: an emergency response and everyday health screening concept.',
+  },
+  {
+    image: '/DEVels.jpg',
+    label: 'ISAT U · COMMUNITY',
+    title: 'Good systems are built together',
+    detail:
+      'A reminder that collaboration, shared deadlines, and people who keep showing up are part of every project worth shipping.',
+  },
+];
+
+const affiliations = [
+  { image: '/isat.png', label: 'Iloilo State University of Science and Technology' },
+  { image: '/kwadra.png', label: 'Kwadra TBI' },
+  { image: '/isatech.png', label: 'ISATECH Society' },
+];
+
+const skillGroups = [
+  { label: 'REAL-TIME', values: ['Redis', 'WebSockets', 'Socket.IO', 'Event-driven systems'] },
+  { label: 'LOCATION', values: ['Geospatial services', 'Routing algorithms', 'Maps & mobility'] },
+  { label: 'AI / ML', values: ['TensorFlow Lite', 'CNN models', 'MediaPipe', 'AI integrations'] },
+  { label: 'FULL-STACK', values: ['TypeScript', 'React', 'Node.js', 'PostgreSQL', 'Firebase'] },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#050a10" />
+    <meta
+      name="description"
+      content="Leandro Jose Untal — full-stack engineer building real-time systems, location-aware services, and practical AI integrations."
+    />
+    <title>Leandro Jose Untal — Full-stack Engineer</title>
+    <link rel="icon" href="/react.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <div
+      aria-hidden="true"
+      class="pointer-events-none fixed inset-0 z-0 overflow-hidden"
+    >
+      <HeroCanvas client:only="react" />
+    </div>
+    <div aria-hidden="true" class="noise-overlay pointer-events-none fixed inset-0 z-[1]"></div>
+    <div aria-hidden="true" class="grid-fade pointer-events-none fixed inset-0 z-[1] opacity-70"></div>
+    <div aria-hidden="true" class="pointer-events-none fixed inset-0 z-[2] bg-[linear-gradient(90deg,rgba(5,10,16,0.94)_0%,rgba(5,10,16,0.77)_39%,rgba(5,10,16,0.36)_100%)] max-md:bg-[linear-gradient(180deg,rgba(5,10,16,0.69)_0%,rgba(5,10,16,0.9)_52%,rgba(5,10,16,0.98)_100%)]"></div>
+
+    <main id="page-scroll" class="relative z-10">
+      <header class="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6 lg:px-10">
+        <div class="glass-panel mx-auto flex max-w-[1440px] items-center justify-between rounded-2xl px-4 py-3 sm:px-6">
+          <a href="#top" class="group flex items-center gap-3" aria-label="Leandro Untal, home">
+            <span class="grid size-9 place-items-center rounded-lg border border-[#91f2d54a] bg-[#91f2d511] font-mono text-sm font-medium text-[#a4f5db]">LU</span>
+            <span class="font-mono text-[11px] tracking-[0.15em] text-slate-200 sm:text-xs">LEANDRO<span class="text-[#90eed3]">.DEV</span></span>
+          </a>
+
+          <nav aria-label="Main navigation" class="flex items-center gap-1 sm:gap-2">
+            <a class="rounded-lg px-3 py-2 font-mono text-[10px] tracking-[0.12em] text-slate-400 transition hover:bg-white/[0.05] hover:text-white sm:px-4 sm:text-[11px]" href="#about">ABOUT</a>
+            <a class="rounded-lg px-3 py-2 font-mono text-[10px] tracking-[0.12em] text-slate-400 transition hover:bg-white/[0.05] hover:text-white sm:px-4 sm:text-[11px]" href="#work">WORK</a>
+            <a class="rounded-lg border border-[#91f2d550] bg-[#91f2d511] px-3 py-2 font-mono text-[10px] tracking-[0.12em] text-[#a4f5db] transition hover:bg-[#91f2d522] sm:px-4 sm:text-[11px]" href="#contact">LET'S TALK <span aria-hidden="true" class="ml-1">↗</span></a>
+          </nav>
+        </div>
+      </header>
+
+      <section id="top" class="relative mx-auto flex min-h-[850px] max-w-[1440px] items-center px-6 pb-24 pt-36 sm:min-h-[920px] sm:px-10 lg:min-h-[100svh] lg:px-16">
+        <div class="grid w-full items-center gap-14 lg:grid-cols-[1.12fr_0.88fr] lg:gap-8">
+          <div class="max-w-[760px]">
+            <p class="mono-label eyebrow-dot reveal mb-7">FULL-STACK ENGINEER <span class="mx-2 text-slate-600">/</span> ILOILO, PH</p>
+            <h1 class="reveal text-balance text-[clamp(3.3rem,8.1vw,7.7rem)] font-semibold leading-[0.91] tracking-[-0.075em] text-[#f4f7f4]">
+              Systems for a<br />
+              <span class="bg-gradient-to-r from-[#b8f2d9] via-[#81dfe3] to-[#94bcff] bg-clip-text text-transparent">real-time</span><br />
+              world<span class="text-[#9bf0d6]">.</span>
+            </h1>
+            <p class="reveal mt-8 max-w-[590px] text-pretty text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
+              I build full-stack products that stay responsive under pressure — from live backend systems and location-aware services to AI that solves a real problem.
+            </p>
+
+            <div class="reveal mt-8 flex flex-wrap gap-2.5">
+              {['REDIS', 'WEBSOCKETS', 'GEOSPATIAL', 'AI INTEGRATION'].map((tag) => (
+                <span class="rounded-full border border-white/10 bg-white/[0.035] px-3 py-1.5 font-mono text-[9px] tracking-[0.14em] text-slate-300 sm:text-[10px]">{tag}</span>
+              ))}
+            </div>
+
+            <div class="reveal mt-10 flex flex-wrap items-center gap-4">
+              <a href="#work" class="group inline-flex items-center gap-3 rounded-xl bg-[#a2f0d7] px-5 py-3.5 font-mono text-[11px] font-medium tracking-[0.08em] text-[#07120f] transition hover:bg-[#c2ffe9]">
+                EXPLORE THE WORK <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">↘</span>
+              </a>
+              <a href="/resume.pdf" download="Leandro-Untal-Resume.pdf" class="inline-flex items-center gap-2 rounded-xl border border-white/15 px-5 py-3.5 font-mono text-[11px] tracking-[0.08em] text-slate-200 transition hover:border-white/30 hover:bg-white/[0.04]">
+                <span aria-hidden="true">↓</span> GET RESUME
+              </a>
+            </div>
+
+            <div class="reveal mt-14 flex items-center gap-3 font-mono text-[10px] tracking-[0.12em] text-slate-500">
+              <span class="relative flex size-2.5"><span class="absolute inline-flex size-full animate-ping rounded-full bg-emerald-300 opacity-30"></span><span class="relative inline-flex size-2.5 rounded-full bg-emerald-300"></span></span>
+              BUILDING USEFUL THINGS, ONE SYSTEM AT A TIME
+            </div>
+          </div>
+
+          <aside class="reveal relative mx-auto w-full max-w-[430px]">
+            <div class="absolute -inset-8 rounded-full bg-[#72ddcf]/[0.07] blur-3xl"></div>
+            <div class="glass-panel relative overflow-hidden rounded-[28px] p-4 sm:p-5">
+              <div class="flex items-center justify-between border-b hairline px-1 pb-4">
+                <span class="mono-label">OPERATOR PROFILE</span>
+                <span class="font-mono text-[10px] text-slate-500">ID: LJU_001</span>
+              </div>
+              <div class="relative mt-4 overflow-hidden rounded-2xl border border-white/10">
+                <img src="/me.jpg" alt="Portrait of Leandro Jose Untal" class="aspect-[4/5] w-full object-cover object-center sm:aspect-[3/4]" fetchpriority="high" />
+                <div class="absolute inset-0 bg-gradient-to-t from-[#060b10] via-transparent to-transparent"></div>
+                <div class="absolute inset-x-0 bottom-0 p-5">
+                  <p class="font-mono text-[10px] tracking-[0.18em] text-[#a1f0d8]">AVAILABLE FOR THE RIGHT BUILD</p>
+                  <h2 class="mt-2 text-2xl font-semibold tracking-[-0.04em] text-white">Leandro Jose Untal</h2>
+                  <p class="mt-1 font-mono text-xs text-slate-300">Software Engineer <span class="text-slate-600">·</span> Philippines</p>
+                </div>
+              </div>
+              <div class="grid grid-cols-3 gap-2 pt-4">
+                <div class="rounded-xl border border-white/[0.08] bg-white/[0.025] p-3">
+                  <p class="mono-label !text-[8px]">FOCUS</p><p class="mt-1.5 text-xs font-medium text-slate-200">Realtime</p>
+                </div>
+                <div class="rounded-xl border border-white/[0.08] bg-white/[0.025] p-3">
+                  <p class="mono-label !text-[8px]">DOMAIN</p><p class="mt-1.5 text-xs font-medium text-slate-200">Geospatial</p>
+                </div>
+                <div class="rounded-xl border border-white/[0.08] bg-white/[0.025] p-3">
+                  <p class="mono-label !text-[8px]">MODE</p><p class="mt-1.5 text-xs font-medium text-slate-200">Full-stack</p>
+                </div>
+              </div>
+            </div>
+            <div class="absolute -bottom-6 -left-6 hidden rounded-xl border border-[#8fe4d64a] bg-[#09140f]/90 px-4 py-3 shadow-xl backdrop-blur-xl sm:block">
+              <p class="font-mono text-[9px] tracking-[0.15em] text-slate-500">SYSTEM STATUS</p>
+              <p class="mt-1 font-mono text-xs text-[#a1f0d8]">ONLINE <span class="terminal-caret"></span></p>
+            </div>
+          </aside>
+        </div>
+
+        <div aria-hidden="true" class="absolute bottom-8 left-6 hidden items-center gap-3 font-mono text-[9px] tracking-[0.18em] text-slate-600 sm:flex lg:left-16">
+          <span class="h-px w-10 bg-slate-700"></span> SCROLL TO EXPLORE <span class="animate-bounce text-[#a1f0d8]">↓</span>
+        </div>
+        <div aria-hidden="true" class="absolute bottom-8 right-6 font-mono text-[9px] tracking-[0.15em] text-slate-600 sm:right-10 lg:right-16">05° 19' N&nbsp; / &nbsp;ILOILO</div>
+      </section>
+
+      <section id="about" class="mx-auto max-w-[1440px] scroll-mt-28 px-6 py-28 sm:px-10 lg:px-16 lg:py-36">
+        <div class="section-rule mb-12"></div>
+        <div class="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+          <div class="reveal">
+            <p class="mono-label eyebrow-dot">01 / ABOUT</p>
+            <h2 class="mt-5 max-w-md text-4xl font-semibold leading-tight tracking-[-0.055em] text-white sm:text-5xl">I like software that moves with the world.</h2>
+            <p class="mt-6 max-w-md text-sm leading-7 text-slate-400">Curious by default. Practical by design. Always looking for the smallest reliable system that can make a meaningful difference.</p>
+            <div class="photo-frame mt-8 max-w-sm overflow-hidden rounded-2xl border border-white/10">
+              <img src="/imgg.jpg" alt="A snapshot from Leandro's project archive" class="h-44 w-full object-cover" loading="lazy" decoding="async" />
+            </div>
+          </div>
+
+          <div class="space-y-5">
+            <article class="glass-panel reveal rounded-2xl p-6 sm:p-8">
+              <p class="mono-label">THE SHORT VERSION</p>
+              <p class="mt-4 max-w-3xl text-[15px] leading-8 text-slate-300 sm:text-base">
+                I'm Leandro, a full-stack engineer from the Philippines. I work across backend, web, and mobile to turn early ideas into useful products. My focus is on systems that react as things happen: live data, connected devices, location-aware workflows, and practical AI integrations.
+              </p>
+              <p class="mt-4 max-w-3xl text-[15px] leading-8 text-slate-400 sm:text-base">
+                I've led teams in competitive hackathons, built an AI sign-language interpretation prototype, and worked on monitoring and emergency-response tools. I care about clear interfaces, dependable data flow, and working closely with the people who will use what I build.
+              </p>
+            </article>
+
+            <div class="grid gap-4 sm:grid-cols-2">
+              {skillGroups.map((group) => (
+                <article class="glass-panel reveal rounded-2xl p-5">
+                  <p class="mono-label">{group.label}</p>
+                  <div class="mt-4 flex flex-wrap gap-2">
+                    {group.values.map((skill) => (
+                      <span class="rounded-lg border border-white/[0.09] bg-white/[0.025] px-2.5 py-1.5 font-mono text-[10px] text-slate-300">{skill}</span>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="work" class="mx-auto max-w-[1440px] scroll-mt-28 px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
+        <div class="section-rule mb-12"></div>
+        <div class="reveal mb-10 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+          <div>
+            <p class="mono-label eyebrow-dot">02 / SELECTED WORK</p>
+            <h2 class="mt-5 text-4xl font-semibold tracking-[-0.055em] text-white sm:text-5xl">Built to make a difference.</h2>
+          </div>
+          <p class="max-w-sm text-sm leading-6 text-slate-400">A few systems and experiments across fintech, security, connected devices, and health tech.</p>
+        </div>
+
+        <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {projects.map((project) => (
+            <article class="project-card glass-panel reveal group overflow-hidden rounded-2xl transition duration-300 hover:-translate-y-1 hover:border-[#91f2d54a]">
+              <div class="relative aspect-[1.8/1] overflow-hidden border-b border-white/[0.08] bg-[#0c151c]">
+                <img src={project.screenshots[0]} alt={`${project.title} project preview`} class="project-image h-full w-full object-cover" loading="lazy" decoding="async" />
+                {project.screenshots[1] && (
+                  <div class="absolute bottom-3 right-3 h-16 w-24 overflow-hidden rounded-lg border border-white/25 shadow-xl sm:h-20 sm:w-28">
+                    <img src={project.screenshots[1]} alt={`${project.title} additional preview`} class="h-full w-full object-cover" loading="lazy" decoding="async" />
+                  </div>
+                )}
+                <div class="absolute inset-0 bg-gradient-to-t from-[#050a10]/75 via-transparent to-transparent"></div>
+                <span class="absolute left-4 top-4 rounded-full border border-white/15 bg-[#071017]/75 px-3 py-1.5 font-mono text-[8px] tracking-[0.12em] text-slate-200 backdrop-blur-md">{project.kind}</span>
+                <span class="absolute bottom-4 left-4 font-mono text-[10px] tracking-[0.14em] text-[#a1f0d8]">PROJECT_{project.number}</span>
+              </div>
+              <div class="p-5 sm:p-6">
+                <div class="flex items-start justify-between gap-3">
+                  <h3 class="text-xl font-semibold tracking-[-0.035em] text-white">{project.title}</h3>
+                  {project.href && <a href={project.href} target="_blank" rel="noreferrer" aria-label={`Open ${project.title}`} class="grid size-8 shrink-0 place-items-center rounded-full border border-white/10 text-sm text-slate-300 transition group-hover:border-[#91f2d55c] group-hover:text-[#a1f0d8]">↗</a>}
+                </div>
+                <p class="mt-3 min-h-[72px] text-sm leading-6 text-slate-400">{project.description}</p>
+                <div class="mt-5 flex flex-wrap gap-2">
+                  {project.stack.map((tech) => <span class="font-mono text-[9px] tracking-[0.04em] text-slate-500">{tech}</span>)}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="field-notes" class="mx-auto max-w-[1440px] px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
+        <div class="section-rule mb-12"></div>
+        <div class="reveal mb-10 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+          <div>
+            <p class="mono-label eyebrow-dot">03 / FIELD NOTES</p>
+            <h2 class="mt-5 text-4xl font-semibold tracking-[-0.055em] text-white sm:text-5xl">The work is also the people.</h2>
+          </div>
+          <p class="max-w-sm text-sm leading-6 text-slate-400">Competition, collaboration, and the moments that keep the work grounded.</p>
+        </div>
+        <div class="grid gap-5 md:grid-cols-3">
+          {fieldNotes.map((note) => (
+            <article class="photo-frame glass-panel reveal overflow-hidden rounded-2xl">
+              <div class="relative h-60 overflow-hidden bg-[#0c151c]">
+                <img src={note.image} alt={note.title} class="h-full w-full object-cover" loading="lazy" decoding="async" />
+                {note.secondaryImage && <div class="absolute bottom-3 right-3 h-16 w-24 overflow-hidden rounded-lg border border-white/25 shadow-xl"><img src={note.secondaryImage} alt="Another moment from the Hack4Gov regional finals" class="h-full w-full object-cover" loading="lazy" decoding="async" /></div>}
+                <div class="absolute inset-0 bg-gradient-to-t from-[#050a10]/80 to-transparent"></div>
+                <p class="absolute bottom-4 left-5 font-mono text-[9px] tracking-[0.14em] text-[#b4f6e3]">{note.label}</p>
+              </div>
+              <div class="p-5 sm:p-6">
+                <h3 class="text-lg font-semibold tracking-[-0.03em] text-white">{note.title}</h3>
+                <p class="mt-2 text-sm leading-6 text-slate-400">{note.detail}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="contact" class="mx-auto max-w-[1440px] scroll-mt-28 px-6 pb-16 pt-20 sm:px-10 lg:px-16 lg:pb-20 lg:pt-28">
+        <div class="section-rule mb-12"></div>
+        <div class="glass-panel reveal relative overflow-hidden rounded-[28px] p-7 sm:p-10 lg:p-14">
+          <div aria-hidden="true" class="absolute -right-24 -top-36 size-96 rounded-full bg-[#70dfcd]/[0.08] blur-3xl"></div>
+          <div class="relative grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
+            <div>
+              <p class="mono-label eyebrow-dot">04 / CONTACT</p>
+              <h2 class="mt-5 max-w-3xl text-4xl font-semibold leading-tight tracking-[-0.06em] text-white sm:text-6xl">Have a system that needs to come alive?</h2>
+              <p class="mt-5 max-w-xl text-sm leading-7 text-slate-400 sm:text-base">If you're building something with real-time data, maps, or a thoughtful AI layer, I'd like to hear about it.</p>
+            </div>
+            <a href="mailto:lndrjs.untal@gmail.com" class="group inline-flex w-fit items-center gap-3 rounded-xl bg-[#a2f0d7] px-5 py-4 font-mono text-[11px] font-medium tracking-[0.08em] text-[#07120f] transition hover:bg-[#c2ffe9]">
+              START A CONVERSATION <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">↗</span>
+            </a>
+          </div>
+          <div class="relative mt-10 grid gap-4 border-t border-white/10 pt-6 sm:grid-cols-2 lg:grid-cols-3">
+            <a href="mailto:lndrjs.untal@gmail.com" class="group rounded-xl border border-white/[0.08] bg-black/10 p-4 transition hover:border-white/20">
+              <span class="mono-label !text-[9px]">EMAIL</span><span class="mt-2 block text-sm text-slate-200 group-hover:text-[#a1f0d8]">lndrjs.untal@gmail.com</span>
+            </a>
+            <a href="tel:+639619098620" class="group rounded-xl border border-white/[0.08] bg-black/10 p-4 transition hover:border-white/20">
+              <span class="mono-label !text-[9px]">PHONE</span><span class="mt-2 block text-sm text-slate-200 group-hover:text-[#a1f0d8]">+63 961 909 8620</span>
+            </a>
+            <div class="flex items-center gap-3 rounded-xl border border-white/[0.08] bg-black/10 p-4">
+              <a href="https://www.linkedin.com/in/leandro-jose-untal-a82864291/" target="_blank" rel="noreferrer" aria-label="LinkedIn" class="grid size-10 place-items-center rounded-lg border border-white/10 bg-white/[0.03] transition hover:border-[#91f2d55c] hover:bg-white/[0.06]"><img src="/linkedin.png" alt="" class="size-5 object-contain" loading="lazy" /></a>
+              <a href="https://github.com/dJangg0" target="_blank" rel="noreferrer" aria-label="GitHub" class="grid size-10 place-items-center rounded-lg border border-white/10 bg-white/[0.03] transition hover:border-[#91f2d55c] hover:bg-white/[0.06]"><img src="/github.png" alt="" class="size-5 object-contain" loading="lazy" /></a>
+              <span class="ml-1 font-mono text-[9px] tracking-[0.12em] text-slate-500">FIND ME ONLINE</span>
+            </div>
+          </div>
+        </div>
+
+        <footer class="flex flex-col gap-6 px-1 pb-4 pt-10 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p class="font-mono text-[10px] tracking-[0.12em] text-slate-400">LEANDRO<span class="text-[#90eed3]">.DEV</span></p>
+            <p class="mt-2 font-mono text-[9px] tracking-[0.08em] text-slate-600">DESIGNED TO BE USEFUL. BUILT TO KEEP MOVING.</p>
+          </div>
+          <div class="flex items-center gap-3" aria-label="Affiliations">
+            {affiliations.map((affiliation) => (
+              <div class="grid size-10 place-items-center rounded-lg border border-white/[0.08] bg-white/[0.025] p-2" title={affiliation.label}>
+                <img src={affiliation.image} alt={affiliation.label} class="max-h-full max-w-full object-contain" loading="lazy" />
+              </div>
+            ))}
+          </div>
+          <p class="font-mono text-[9px] tracking-[0.1em] text-slate-600">© {new Date().getFullYear()} LEANDRO JOSE UNTAL</p>
+        </footer>
+      </section>
+    </main>
+
+    <script>
+      import { gsap } from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const sceneState = { progress: 0 };
+      const publishProgress = () => {
+        document.documentElement.style.setProperty('--scene-progress', sceneState.progress.toFixed(4));
+        window.dispatchEvent(new CustomEvent('portfolio:scene-progress', { detail: sceneState.progress }));
+      };
+
+      if (!reducedMotion) {
+        gsap.to(sceneState, {
+          progress: 1,
+          ease: 'none',
+          onUpdate: publishProgress,
+          scrollTrigger: {
+            trigger: '#page-scroll',
+            start: 'top top',
+            end: 'bottom bottom',
+            scrub: 1.2,
+          },
+        });
+
+        gsap.utils.toArray<HTMLElement>('.reveal').forEach((element) => {
+          gsap.fromTo(
+            element,
+            { y: 22, autoAlpha: 0 },
+            {
+              y: 0,
+              autoAlpha: 1,
+              duration: 0.75,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: element,
+                start: 'top 88%',
+                toggleActions: 'play none none reverse',
+              },
+            },
+          );
+        });
+      }
+
+      publishProgress();
+    </script>
+  </body>
+</html>
