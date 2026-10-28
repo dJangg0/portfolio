@@ -3,7 +3,7 @@ import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import About from '../public/About'
 import Landing from './landing'
-import Projects from './pages/Projects';
+import Projects from './pages/_Projects';
 import './index.css'
 
 {/* Remove-Item -Recurse -Force node_modules
