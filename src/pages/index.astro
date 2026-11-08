@@ -1,5 +1,4 @@
 ---
-import HeroCanvas from '../components/HeroCanvas';
 import '../styles/global.css';
 
 const projects = [
@@ -7,401 +6,575 @@ const projects = [
     number: '01',
     kind: 'CASHLESS CAMPUS',
     title: 'Online Coop',
-    description:
-      'A digital payment and transaction system for a school cafeteria, with secure sales tracking for admins and a simple balance and checkout flow for students.',
+    status: 'LIVE',
+    statusClass: 'live',
+    description: 'Digital payment + transaction system for a school cafeteria. Secure admin dashboard for sales tracking, student balances and cashless checkout.',
     stack: ['Node.js', 'React', 'TypeScript', 'Firebase', 'OAuth'],
-    screenshots: ['/coop.png'],
+    image: '/coop.png',
   },
   {
     number: '02',
     kind: 'CYBERSECURITY LAB',
     title: 'Hackafest Vulnerable Web App',
-    description:
-      'A deliberately vulnerable practice environment for web exploitation and CTF preparation, built to help learners sharpen their defensive and offensive security skills.',
+    status: 'LIVE',
+    statusClass: 'live',
+    description: 'Deliberately vulnerable practice ground for web exploitation + CTF prep. Built for Hack4Gov aspirants to learn by breaking legally.',
     stack: ['Web security', 'CTF', 'Full-stack'],
-    screenshots: ['/hack1.png', '/hack2.png'],
+    image: '/hack1.png',
   },
   {
     number: '03',
     kind: 'CROSS-PLATFORM APP',
     title: 'Thribo Screening Tool',
-    description:
-      'A responsive screening and assessment tool that streamlines applicant evaluation across mobile and web, with a clear flow for reviewing and managing candidates.',
+    status: 'LIVE',
+    statusClass: 'live',
+    description: 'Responsive screening + assessment tool across mobile and web. Streamlines applicant evaluation. Access: thribo-app.web.app',
     stack: ['Ionic React', 'Node.js', 'TypeScript', 'Tailwind'],
-    screenshots: ['/ojt1.png', '/ojt2.png'],
+    image: '/ojt1.png',
     href: 'https://thribo-app.web.app/',
   },
   {
     number: '04',
     kind: 'CONNECTED SYSTEMS',
     title: 'Live Electrical Monitor',
-    description:
-      'A connected monitoring system for voltage, current, and temperature. Socket-driven updates surface anomalies quickly and send alerts through a mobile-friendly dashboard.',
+    status: 'DEV',
+    statusClass: 'dev',
+    description: 'Real-time voltage / current / temperature monitoring. Socket-driven live UI with sound alerts for overvoltage and thermal spikes.',
     stack: ['Node.js', 'WebSockets', 'Realtime UI', 'IoT'],
-    screenshots: ['/ppe.png', '/ppe1.png'],
+    image: '/ppe.png',
   },
   {
     number: '05',
-    kind: 'LOCATION-AWARE HEALTH TECH',
+    kind: 'LOCATION-AWARE HEALTH',
     title: 'AbTech Emergency Response',
-    description:
-      'A rapid-response mobile concept that helps responders locate incidents, provides screening tools, and uses Dijkstra routing to find a nearby response team.',
+    status: 'TOP 10',
+    statusClass: 'live',
+    description: 'Single-tap emergency locator + daily screening companion with Drive Mode crash detection and Dijkstra-routed responder dispatch.',
     stack: ['Geospatial', 'Routing', 'Mobile', 'Health tech'],
-    screenshots: ['/h4h1.jpg'],
-  },
-];
-
-const fieldNotes = [
-  {
-    image: '/ez.jpg',
-    secondaryImage: '/ez1.jpg',
-    label: 'HACK4GOV · REGION 6',
-    title: 'Leading under pressure',
-    detail:
-      'Led the ISAT U team through a day-long capture-the-flag competition and took the top spot at the 2024 regional finals.',
-  },
-  {
     image: '/h4h1.jpg',
-    label: 'HACK4HEALTH · TOP 10 FINALIST',
-    title: 'Technology with a human outcome',
-    detail:
-      'Built AbTech with a team at the DOH Hack4Health national finals: an emergency response and everyday health screening concept.',
   },
   {
-    image: '/DEVels.jpg',
-    label: 'ISAT U · COMMUNITY',
-    title: 'Good systems are built together',
-    detail:
-      'A reminder that collaboration, shared deadlines, and people who keep showing up are part of every project worth shipping.',
+    number: '06',
+    kind: 'AI / MOBILE',
+    title: 'ASL Interpreter Prototype',
+    status: 'R&D',
+    statusClass: 'dev',
+    description: 'Mobile ASL interpretation prototype using CNNs + TensorFlow Lite to process video on-device and bridge communication gaps.',
+    stack: ['Python', 'TensorFlow Lite', 'CNN', 'MediaPipe'],
+    image: '/imgg.jpg',
   },
 ];
 
-const affiliations = [
-  { image: '/isat.png', label: 'Iloilo State University of Science and Technology' },
-  { image: '/kwadra.png', label: 'Kwadra TBI' },
-  { image: '/isatech.png', label: 'ISATECH Society' },
+const kits = [
+  { label: 'Languages', values: ['TypeScript', 'JavaScript', 'Python', 'Java', 'Kotlin', 'SQL', 'HTML5', 'CSS3'] },
+  { label: 'Web & Mobile', values: ['React', 'Ionic React', 'Node.js', 'Tailwind CSS', 'Android Studio'] },
+  { label: 'AI & Tools', values: ['TensorFlow Lite', 'CNN Models', 'MediaPipe', 'FFmpeg'] },
+  { label: 'Security & Ops', values: ['Kali Linux', 'Nmap', 'Wireshark', 'OSINT', 'Burp-style testing'] },
+  { label: 'Data & Realtime', values: ['Firebase', 'PostgreSQL', 'MySQL', 'Supabase', 'WebSockets', 'Redis'] },
+  { label: 'CTF & Teams', values: ['Hack4Gov', 'Hack4Health', 'TryHackMe-style labs', 'Rapid prototyping'] },
 ];
 
-const skillGroups = [
-  { label: 'REAL-TIME', values: ['Redis', 'WebSockets', 'Socket.IO', 'Event-driven systems'] },
-  { label: 'LOCATION', values: ['Geospatial services', 'Routing algorithms', 'Maps & mobility'] },
-  { label: 'AI / ML', values: ['TensorFlow Lite', 'CNN models', 'MediaPipe', 'AI integrations'] },
-  { label: 'FULL-STACK', values: ['TypeScript', 'React', 'Node.js', 'PostgreSQL', 'Firebase'] },
+const wins = [
+  { ix: '01', nm: 'Hack4Gov 3 — Region VI Champion', ds: 'Led ISAT U team · day-long CTF · July 16, 2024' },
+  { ix: '02', nm: 'DOH Hack4Health — Top 10 National Finalist', ds: 'AbTech emergency response · DAP Tagaytay' },
+  { ix: '03', nm: 'Full-stack + IoT builds shipped', ds: 'Coop payments · electrical monitor · Thribo app' },
+  { ix: '04', nm: 'AI prototype for accessibility', ds: 'On-device ASL interpretation · CNN + TFLite' },
 ];
 ---
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#050a10" />
-    <meta
-      name="description"
-      content="Leandro Jose Untal — full-stack engineer building real-time systems, location-aware services, and practical AI integrations."
-    />
-    <title>Leandro Jose Untal — Full-stack Engineer</title>
-    <link rel="icon" href="/react.svg" type="image/svg+xml" />
-  </head>
-  <body>
-    <div
-      aria-hidden="true"
-      class="pointer-events-none fixed inset-0 z-0 overflow-hidden"
-    >
-      <HeroCanvas client:only="react" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#070a08" />
+  <meta name="description" content="Leandro Jose Untal — full-stack engineer building real-time systems, location-aware services, and practical AI." />
+  <title>Leandro Jose Untal — Full-stack Engineer</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23070a08'/%3E%3Cpath d='M6 9l8 7-8 7' fill='none' stroke='%2300ff66' stroke-width='3'/%3E%3Crect x='16' y='21' width='10' height='3' fill='%2300ff66'/%3E%3C/svg%3E" />
+</head>
+<body>
+<div class="fx fx-grid" aria-hidden="true"></div>
+<div class="fx fx-glow" aria-hidden="true"></div>
+<div class="fx fx-spot" aria-hidden="true"></div>
+<canvas class="fx fx-net" aria-hidden="true"></canvas>
+<div class="fx fx-scan" aria-hidden="true"></div>
+<div class="fx fx-noise" aria-hidden="true"></div>
+<div class="fx fx-sweep" aria-hidden="true"></div>
+<div class="tear" aria-hidden="true"></div>
+<canvas class="fx fx-top" aria-hidden="true"></canvas>
+<div class="cur cur-ring" aria-hidden="true"></div>
+<div class="cur cur-dot" aria-hidden="true"></div>
+
+<header class="bar">
+  <div class="bar-in">
+    <nav class="nav" aria-label="Sections">
+      <a href="#about" data-scramble>About</a>
+      <a href="#work" data-scramble>Work</a>
+      <a href="#ops" data-scramble>Field-Notes</a>
+      <a href="#arsenal" data-scramble>Arsenal</a>
+      <a href="#contact" data-scramble>Contact</a>
+      <span class="nav-ind" aria-hidden="true"></span>
+    </nav>
+  </div>
+  <div class="scrollbar" aria-hidden="true"><span></span></div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="term" aria-hidden="true">
+          <span>root@leandro-dev:~# whoami</span>
+          <span><span class="ok">[+]</span> operator identified · access level: builder</span>
+        </div>
+        <h1 class="name">
+          <span class="glitch idle" data-text="Leandro Jose">Leandro Jose</span>
+          <span class="glitch idle thin" data-text="Untal">Untal</span>
+        </h1>
+        <div class="role" aria-live="polite"><span class="pfx">&gt; </span><span id="role">Full-stack engineer</span><span class="caret" aria-hidden="true"></span></div>
+        <p class="lede">22-year-old developer from the Philippines turning ideas into working systems — real-time backends, location-aware services, and practical AI. Hack4Gov Region VI champion, DOH Hack4Health Top 10 finalist.</p>
+        <div class="cta">
+          <a class="btn" href="#work" data-scramble>View work</a>
+          <a class="btn ghost" href="/resume.pdf" download="Leandro-Untal-Resume.pdf" data-scramble>Get resume</a>
+        </div>
+      </div>
+      <div class="op" id="op">
+        <div class="frame-wrap" data-tilt="10">
+          <div class="frame" style="--src:url(/me.jpg)">
+            <div class="layer base" role="img" aria-label="Portrait of Leandro Jose Untal"></div>
+            <div class="layer tint"></div>
+            <div class="layer r"></div>
+            <div class="layer c"></div>
+            <div class="cross"></div>
+          </div>
+          <div class="reticle" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="op-tag"><span>Target: <b>Locked</b></span><span>10.72°N 122.56°E</span></div>
+      </div>
     </div>
-    <div aria-hidden="true" class="noise-overlay pointer-events-none fixed inset-0 z-[1]"></div>
-    <div aria-hidden="true" class="grid-fade pointer-events-none fixed inset-0 z-[1] opacity-70"></div>
-    <div aria-hidden="true" class="pointer-events-none fixed inset-0 z-[2] bg-[linear-gradient(90deg,rgba(5,10,16,0.94)_0%,rgba(5,10,16,0.77)_39%,rgba(5,10,16,0.36)_100%)] max-md:bg-[linear-gradient(180deg,rgba(5,10,16,0.69)_0%,rgba(5,10,16,0.9)_52%,rgba(5,10,16,0.98)_100%)]"></div>
+  </section>
 
-    <main id="page-scroll" class="relative z-10">
-      <header class="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6 lg:px-10">
-        <div class="glass-panel mx-auto flex max-w-[1440px] items-center justify-between rounded-2xl px-4 py-3 sm:px-6">
-          <a href="#top" class="group flex items-center gap-3" aria-label="Leandro Untal, home">
-            <span class="grid size-9 place-items-center rounded-lg border border-[#91f2d54a] bg-[#91f2d511] font-mono text-sm font-medium text-[#a4f5db]">LU</span>
-            <span class="font-mono text-[11px] tracking-[0.15em] text-slate-200 sm:text-xs">LEANDRO<span class="text-[#90eed3]">.DEV</span></span>
-          </a>
-
-          <nav aria-label="Main navigation" class="flex items-center gap-1 sm:gap-2">
-            <a class="rounded-lg px-3 py-2 font-mono text-[10px] tracking-[0.12em] text-slate-400 transition hover:bg-white/[0.05] hover:text-white sm:px-4 sm:text-[11px]" href="#about">ABOUT</a>
-            <a class="rounded-lg px-3 py-2 font-mono text-[10px] tracking-[0.12em] text-slate-400 transition hover:bg-white/[0.05] hover:text-white sm:px-4 sm:text-[11px]" href="#work">WORK</a>
-            <a class="rounded-lg border border-[#91f2d550] bg-[#91f2d511] px-3 py-2 font-mono text-[10px] tracking-[0.12em] text-[#a4f5db] transition hover:bg-[#91f2d522] sm:px-4 sm:text-[11px]" href="#contact">LET'S TALK <span aria-hidden="true" class="ml-1">↗</span></a>
-          </nav>
+  <section id="about">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="path">~/<em>about</em> $ cat profile.md</span>
+        <h2 class="glitch" data-text="About">About</h2>
+        <p class="lede">Software that moves with the world — live data, connected devices, clear interfaces, dependable flow.</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-copy">
+          <p>I'm <strong>Leandro Jose Endriga Untal</strong> — a versatile undergrad developer who adapts fast across full-stack, AI/ML and security, now focusing toward <strong>software engineering + red-team security</strong>.</p>
+          <p>I built a mobile <strong>ASL interpreter (CNN + TensorFlow Lite)</strong> for on-device video understanding, and a <strong>panel-board / electrical monitoring system</strong> streaming voltage, current and temperature with real-time alerts.</p>
+          <p>Hackathons shaped how I work: rapid prototyping, design sprints, performing under pressure — from winning <strong>Hack4Gov Region VI</strong> to national finals at <strong>DOH Hack4Health in Tagaytay</strong>.</p>
+          <dl class="roe">
+            <dt>Scope</dt><dd>Real users, real constraints, usable systems</dd>
+            <dt>Method</dt><dd>Evidence first, reproducible steps, clear reports</dd>
+            <dt>Mode</dt><dd>Team player · detail-oriented · problem-solver</dd>
+          </dl>
         </div>
-      </header>
-
-      <section id="top" class="relative mx-auto flex min-h-[850px] max-w-[1440px] items-center px-6 pb-24 pt-36 sm:min-h-[920px] sm:px-10 lg:min-h-[100svh] lg:px-16">
-        <div class="grid w-full items-center gap-14 lg:grid-cols-[1.12fr_0.88fr] lg:gap-8">
-          <div class="max-w-[760px]">
-            <p class="mono-label eyebrow-dot reveal mb-7">FULL-STACK ENGINEER <span class="mx-2 text-slate-600">/</span> ILOILO, PH</p>
-            <h1 class="reveal text-balance text-[clamp(3.3rem,8.1vw,7.7rem)] font-semibold leading-[0.91] tracking-[-0.075em] text-[#f4f7f4]">
-              Systems for a<br />
-              <span class="bg-gradient-to-r from-[#b8f2d9] via-[#81dfe3] to-[#94bcff] bg-clip-text text-transparent">real-time</span><br />
-              world<span class="text-[#9bf0d6]">.</span>
-            </h1>
-            <p class="reveal mt-8 max-w-[590px] text-pretty text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
-              I build full-stack products that stay responsive under pressure — from live backend systems and location-aware services to AI that solves a real problem.
-            </p>
-
-            <div class="reveal mt-8 flex flex-wrap gap-2.5">
-              {['REDIS', 'WEBSOCKETS', 'GEOSPATIAL', 'AI INTEGRATION'].map((tag) => (
-                <span class="rounded-full border border-white/10 bg-white/[0.035] px-3 py-1.5 font-mono text-[9px] tracking-[0.14em] text-slate-300 sm:text-[10px]">{tag}</span>
-              ))}
-            </div>
-
-            <div class="reveal mt-10 flex flex-wrap items-center gap-4">
-              <a href="#work" class="group inline-flex items-center gap-3 rounded-xl bg-[#a2f0d7] px-5 py-3.5 font-mono text-[11px] font-medium tracking-[0.08em] text-[#07120f] transition hover:bg-[#c2ffe9]">
-                EXPLORE THE WORK <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">↘</span>
-              </a>
-              <a href="/resume.pdf" download="Leandro-Untal-Resume.pdf" class="inline-flex items-center gap-2 rounded-xl border border-white/15 px-5 py-3.5 font-mono text-[11px] tracking-[0.08em] text-slate-200 transition hover:border-white/30 hover:bg-white/[0.04]">
-                <span aria-hidden="true">↓</span> GET RESUME
-              </a>
-            </div>
-
-            <div class="reveal mt-14 flex items-center gap-3 font-mono text-[10px] tracking-[0.12em] text-slate-500">
-              <span class="relative flex size-2.5"><span class="absolute inline-flex size-full animate-ping rounded-full bg-emerald-300 opacity-30"></span><span class="relative inline-flex size-2.5 rounded-full bg-emerald-300"></span></span>
-              BUILDING USEFUL THINGS, ONE SYSTEM AT A TIME
-            </div>
+        <figure class="base-card" data-spot style="margin:0">
+          <div class="hd"><span>ILOILO / PHILIPPINES</span><span>FIELD-KIT_01</span></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line)">
+            <div style="overflow:hidden"><img src="/ez.jpg" alt="Hack4Gov regional finals" loading="lazy" style="aspect-ratio:4/3;object-fit:cover" /></div>
+            <div style="overflow:hidden"><img src="/DEVels.jpg" alt="The DEVels team" loading="lazy" style="aspect-ratio:4/3;object-fit:cover" /></div>
           </div>
+          <figcaption class="ft"><span><b>●</b> ISAT U · Kwadra TBI · ISATECH Society</span><span>EST. ILOILO</span></figcaption>
+        </figure>
+      </div>
 
-          <aside class="reveal relative mx-auto w-full max-w-[430px]">
-            <div class="absolute -inset-8 rounded-full bg-[#72ddcf]/[0.07] blur-3xl"></div>
-            <div class="glass-panel relative overflow-hidden rounded-[28px] p-4 sm:p-5">
-              <div class="flex items-center justify-between border-b hairline px-1 pb-4">
-                <span class="mono-label">OPERATOR PROFILE</span>
-                <span class="font-mono text-[10px] text-slate-500">ID: LJU_001</span>
-              </div>
-              <div class="relative mt-4 overflow-hidden rounded-2xl border border-white/10">
-                <img src="/me.jpg" alt="Portrait of Leandro Jose Untal" class="aspect-[4/5] w-full object-cover object-center sm:aspect-[3/4]" fetchpriority="high" />
-                <div class="absolute inset-0 bg-gradient-to-t from-[#060b10] via-transparent to-transparent"></div>
-                <div class="absolute inset-x-0 bottom-0 p-5">
-                  <p class="font-mono text-[10px] tracking-[0.18em] text-[#a1f0d8]">AVAILABLE FOR THE RIGHT BUILD</p>
-                  <h2 class="mt-2 text-2xl font-semibold tracking-[-0.04em] text-white">Leandro Jose Untal</h2>
-                  <p class="mt-1 font-mono text-xs text-slate-300">Software Engineer <span class="text-slate-600">·</span> Philippines</p>
-                </div>
-              </div>
-              <div class="grid grid-cols-3 gap-2 pt-4">
-                <div class="rounded-xl border border-white/[0.08] bg-white/[0.025] p-3">
-                  <p class="mono-label !text-[8px]">FOCUS</p><p class="mt-1.5 text-xs font-medium text-slate-200">Realtime</p>
-                </div>
-                <div class="rounded-xl border border-white/[0.08] bg-white/[0.025] p-3">
-                  <p class="mono-label !text-[8px]">DOMAIN</p><p class="mt-1.5 text-xs font-medium text-slate-200">Geospatial</p>
-                </div>
-                <div class="rounded-xl border border-white/[0.08] bg-white/[0.025] p-3">
-                  <p class="mono-label !text-[8px]">MODE</p><p class="mt-1.5 text-xs font-medium text-slate-200">Full-stack</p>
-                </div>
-              </div>
-            </div>
-            <div class="absolute -bottom-6 -left-6 hidden rounded-xl border border-[#8fe4d64a] bg-[#09140f]/90 px-4 py-3 shadow-xl backdrop-blur-xl sm:block">
-              <p class="font-mono text-[9px] tracking-[0.15em] text-slate-500">SYSTEM STATUS</p>
-              <p class="mt-1 font-mono text-xs text-[#a1f0d8]">ONLINE <span class="terminal-caret"></span></p>
-            </div>
-          </aside>
+      <div class="record" data-spot>
+        <div class="record-copy">
+          <span class="path">~/<em>ops</em> $ cat hack4gov.log</span>
+          <div class="rank glitch" data-text="TOP 1">TOP 1<small>REGION VI</small></div>
+          <p>ISATECH Tradeans took the top spot at the Hack4Gov 3 Region VI finals — a day-long CTF where collaboration under pressure decided the win. Later took AbTech to the DOH Hack4Health national Top 10.</p>
+          <dl class="meta">
+            <dt>Event</dt><dd>Hack4Gov 3 Regional Finals</dd>
+            <dt>Role</dt><dd>Team lead · CTF captain</dd>
+            <dt>Date</dt><dd>July 16, 2024</dd>
+            <dt>Next</dt><dd>DOH Hack4Health · DAP Tagaytay · Top 10</dd>
+          </dl>
         </div>
-
-        <div aria-hidden="true" class="absolute bottom-8 left-6 hidden items-center gap-3 font-mono text-[9px] tracking-[0.18em] text-slate-600 sm:flex lg:left-16">
-          <span class="h-px w-10 bg-slate-700"></span> SCROLL TO EXPLORE <span class="animate-bounce text-[#a1f0d8]">↓</span>
+        <div class="shots">
+          <figure class="shot"><img src="/ez1.jpg" alt="Celebrating the Hack4Gov win" loading="lazy" /><figcaption>Hack4Gov · Finals</figcaption></figure>
+          <figure class="shot"><img src="/h4h1.jpg" alt="AbTech at Hack4Health" loading="lazy" /><figcaption>Hack4Health · Top 10</figcaption></figure>
         </div>
-        <div aria-hidden="true" class="absolute bottom-8 right-6 font-mono text-[9px] tracking-[0.15em] text-slate-600 sm:right-10 lg:right-16">05° 19' N&nbsp; / &nbsp;ILOILO</div>
-      </section>
+      </div>
+    </div>
+  </section>
 
-      <section id="about" class="mx-auto max-w-[1440px] scroll-mt-28 px-6 py-28 sm:px-10 lg:px-16 lg:py-36">
-        <div class="section-rule mb-12"></div>
-        <div class="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
-          <div class="reveal">
-            <p class="mono-label eyebrow-dot">01 / ABOUT</p>
-            <h2 class="mt-5 max-w-md text-4xl font-semibold leading-tight tracking-[-0.055em] text-white sm:text-5xl">I like software that moves with the world.</h2>
-            <p class="mt-6 max-w-md text-sm leading-7 text-slate-400">Curious by default. Practical by design. Always looking for the smallest reliable system that can make a meaningful difference.</p>
-            <div class="photo-frame mt-8 max-w-sm overflow-hidden rounded-2xl border border-white/10">
-              <img src="/imgg.jpg" alt="A snapshot from Leandro's project archive" class="h-44 w-full object-cover" loading="lazy" decoding="async" />
+  <section id="work">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="path">~/<em>work</em> $ ls projects/ --grid</span>
+        <h2 class="glitch" data-text="Selected Work">Selected Work</h2>
+        <p class="lede">Fintech, security labs, connected devices, health tech, on-device AI. Hover a card to scan it.</p>
+      </div>
+      <div class="cards">
+        {projects.map((p) => (
+          <article class="card" data-spot>
+            <span class="corner tl"></span><span class="corner br"></span>
+            <div class="card-top"><span>PRJ_{p.number} · {p.kind}</span><span class={`status ${p.statusClass}`}>{p.status}</span></div>
+            <button class="thumb shot-open" data-full={p.image} data-title={p.title} aria-label={`Enlarge ${p.title}`}>
+              <img src={p.image} alt={`${p.title} preview`} loading="lazy" />
+              <span class="thumb-cta">OPEN_</span>
+            </button>
+            <h3>{p.title}</h3>
+            <p>{p.description}</p>
+            <div class="tags">{p.stack.map((s) => <span class="tag">{s}</span>)}
+              {p.href && <a class="tag" href={p.href} target="_blank" rel="noreferrer" style="color:var(--red);border-color:rgba(0,255,102,.4)">LIVE ↗</a>}
             </div>
-          </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
 
-          <div class="space-y-5">
-            <article class="glass-panel reveal rounded-2xl p-6 sm:p-8">
-              <p class="mono-label">THE SHORT VERSION</p>
-              <p class="mt-4 max-w-3xl text-[15px] leading-8 text-slate-300 sm:text-base">
-                I'm Leandro, a full-stack engineer from the Philippines. I work across backend, web, and mobile to turn early ideas into useful products. My focus is on systems that react as things happen: live data, connected devices, location-aware workflows, and practical AI integrations.
-              </p>
-              <p class="mt-4 max-w-3xl text-[15px] leading-8 text-slate-400 sm:text-base">
-                I've led teams in competitive hackathons, built an AI sign-language interpretation prototype, and worked on monitoring and emergency-response tools. I care about clear interfaces, dependable data flow, and working closely with the people who will use what I build.
-              </p>
-            </article>
+  <section id="ops">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="path">~/<em>field-notes</em> $ cat moments.log</span>
+        <h2 class="glitch" data-text="Field Notes">Field Notes</h2>
+        <p class="lede">Competition, collaboration, and the people behind the systems.</p>
+      </div>
+      <div class="cards">
+        <article class="card" data-spot>
+          <span class="corner tl"></span><span class="corner br"></span>
+          <div class="card-top"><span>LOG_01</span><span class="status live">HACK4GOV</span></div>
+          <h3>Leading under pressure</h3>
+          <p>Led the ISAT U team through a day-long CTF. Fast triage, clear comms, no panic — top spot at the 2024 Region VI finals.</p>
+          <div class="tags"><span class="tag">CTF captain</span><span class="tag"> teamwork</span></div>
+        </article>
+        <article class="card" data-spot>
+          <span class="corner tl"></span><span class="corner br"></span>
+          <div class="card-top"><span>LOG_02</span><span class="status live">HACK4HEALTH</span></div>
+          <h3>Technology with a human outcome</h3>
+          <p>AbTech: single-tap accident locator, screening tools, Drive Mode crash detection with Dijkstra routing to responders.</p>
+          <div class="tags"><span class="tag">Health tech</span><span class="tag">Top 10 PH</span></div>
+        </article>
+        <article class="card holo" data-spot>
+          <span class="corner tl"></span><span class="corner br"></span>
+          <div class="card-top"><span>NEXT_</span><span class="status dev">OPEN_SLOT</span></div>
+          <h3>Your project here</h3>
+          <p>Have a real-time system, map workflow, or AI layer that needs to come alive? Let's scope it.</p>
+          <div class="cta" style="margin-top:6px"><a class="btn" href="#contact">Ping me</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
 
-            <div class="grid gap-4 sm:grid-cols-2">
-              {skillGroups.map((group) => (
-                <article class="glass-panel reveal rounded-2xl p-5">
-                  <p class="mono-label">{group.label}</p>
-                  <div class="mt-4 flex flex-wrap gap-2">
-                    {group.values.map((skill) => (
-                      <span class="rounded-lg border border-white/[0.09] bg-white/[0.025] px-2.5 py-1.5 font-mono text-[10px] text-slate-300">{skill}</span>
-                    ))}
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="work" class="mx-auto max-w-[1440px] scroll-mt-28 px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
-        <div class="section-rule mb-12"></div>
-        <div class="reveal mb-10 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
-          <div>
-            <p class="mono-label eyebrow-dot">02 / SELECTED WORK</p>
-            <h2 class="mt-5 text-4xl font-semibold tracking-[-0.055em] text-white sm:text-5xl">Built to make a difference.</h2>
-          </div>
-          <p class="max-w-sm text-sm leading-6 text-slate-400">A few systems and experiments across fintech, security, connected devices, and health tech.</p>
-        </div>
-
-        <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {projects.map((project) => (
-            <article class="project-card glass-panel reveal group overflow-hidden rounded-2xl transition duration-300 hover:-translate-y-1 hover:border-[#91f2d54a]">
-              <div class="relative aspect-[1.8/1] overflow-hidden border-b border-white/[0.08] bg-[#0c151c]">
-                <img src={project.screenshots[0]} alt={`${project.title} project preview`} class="project-image h-full w-full object-cover" loading="lazy" decoding="async" />
-                {project.screenshots[1] && (
-                  <div class="absolute bottom-3 right-3 h-16 w-24 overflow-hidden rounded-lg border border-white/25 shadow-xl sm:h-20 sm:w-28">
-                    <img src={project.screenshots[1]} alt={`${project.title} additional preview`} class="h-full w-full object-cover" loading="lazy" decoding="async" />
-                  </div>
-                )}
-                <div class="absolute inset-0 bg-gradient-to-t from-[#050a10]/75 via-transparent to-transparent"></div>
-                <span class="absolute left-4 top-4 rounded-full border border-white/15 bg-[#071017]/75 px-3 py-1.5 font-mono text-[8px] tracking-[0.12em] text-slate-200 backdrop-blur-md">{project.kind}</span>
-                <span class="absolute bottom-4 left-4 font-mono text-[10px] tracking-[0.14em] text-[#a1f0d8]">PROJECT_{project.number}</span>
-              </div>
-              <div class="p-5 sm:p-6">
-                <div class="flex items-start justify-between gap-3">
-                  <h3 class="text-xl font-semibold tracking-[-0.035em] text-white">{project.title}</h3>
-                  {project.href && <a href={project.href} target="_blank" rel="noreferrer" aria-label={`Open ${project.title}`} class="grid size-8 shrink-0 place-items-center rounded-full border border-white/10 text-sm text-slate-300 transition group-hover:border-[#91f2d55c] group-hover:text-[#a1f0d8]">↗</a>}
-                </div>
-                <p class="mt-3 min-h-[72px] text-sm leading-6 text-slate-400">{project.description}</p>
-                <div class="mt-5 flex flex-wrap gap-2">
-                  {project.stack.map((tech) => <span class="font-mono text-[9px] tracking-[0.04em] text-slate-500">{tech}</span>)}
-                </div>
-              </div>
-            </article>
+  <section id="arsenal">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="path">~/<em>arsenal</em> $ cat stack.txt toolkit.txt</span>
+        <h2 class="glitch" data-text="Arsenal & Toolkit">Arsenal &amp; Toolkit</h2>
+        <p class="lede">What I reach for when the build needs to ship.</p>
+      </div>
+      <div class="ars">
+        <div class="certs" data-spot>
+          <div class="certs-hd"><span>Highlights &amp; wins</span><span>{wins.length}</span></div>
+          {wins.map((w) => (
+            <div class="cert"><span class="ix">{w.ix}</span><span class="nm">{w.nm}</span><span class="ds">{w.ds}</span></div>
           ))}
         </div>
-      </section>
-
-      <section id="field-notes" class="mx-auto max-w-[1440px] px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
-        <div class="section-rule mb-12"></div>
-        <div class="reveal mb-10 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
-          <div>
-            <p class="mono-label eyebrow-dot">03 / FIELD NOTES</p>
-            <h2 class="mt-5 text-4xl font-semibold tracking-[-0.055em] text-white sm:text-5xl">The work is also the people.</h2>
-          </div>
-          <p class="max-w-sm text-sm leading-6 text-slate-400">Competition, collaboration, and the moments that keep the work grounded.</p>
-        </div>
-        <div class="grid gap-5 md:grid-cols-3">
-          {fieldNotes.map((note) => (
-            <article class="photo-frame glass-panel reveal overflow-hidden rounded-2xl">
-              <div class="relative h-60 overflow-hidden bg-[#0c151c]">
-                <img src={note.image} alt={note.title} class="h-full w-full object-cover" loading="lazy" decoding="async" />
-                {note.secondaryImage && <div class="absolute bottom-3 right-3 h-16 w-24 overflow-hidden rounded-lg border border-white/25 shadow-xl"><img src={note.secondaryImage} alt="Another moment from the Hack4Gov regional finals" class="h-full w-full object-cover" loading="lazy" decoding="async" /></div>}
-                <div class="absolute inset-0 bg-gradient-to-t from-[#050a10]/80 to-transparent"></div>
-                <p class="absolute bottom-4 left-5 font-mono text-[9px] tracking-[0.14em] text-[#b4f6e3]">{note.label}</p>
-              </div>
-              <div class="p-5 sm:p-6">
-                <h3 class="text-lg font-semibold tracking-[-0.03em] text-white">{note.title}</h3>
-                <p class="mt-2 text-sm leading-6 text-slate-400">{note.detail}</p>
-              </div>
-            </article>
+        <div class="kits">
+          {kits.map((k) => (
+            <div class="kit" data-spot>
+              <div class="kit-hd">{k.label}</div>
+              <div class="chips">{k.values.map((v) => <span class="chip">{v}</span>)}</div>
+            </div>
           ))}
         </div>
-      </section>
+      </div>
+    </div>
+  </section>
 
-      <section id="contact" class="mx-auto max-w-[1440px] scroll-mt-28 px-6 pb-16 pt-20 sm:px-10 lg:px-16 lg:pb-20 lg:pt-28">
-        <div class="section-rule mb-12"></div>
-        <div class="glass-panel reveal relative overflow-hidden rounded-[28px] p-7 sm:p-10 lg:p-14">
-          <div aria-hidden="true" class="absolute -right-24 -top-36 size-96 rounded-full bg-[#70dfcd]/[0.08] blur-3xl"></div>
-          <div class="relative grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
-            <div>
-              <p class="mono-label eyebrow-dot">04 / CONTACT</p>
-              <h2 class="mt-5 max-w-3xl text-4xl font-semibold leading-tight tracking-[-0.06em] text-white sm:text-6xl">Have a system that needs to come alive?</h2>
-              <p class="mt-5 max-w-xl text-sm leading-7 text-slate-400 sm:text-base">If you're building something with real-time data, maps, or a thoughtful AI layer, I'd like to hear about it.</p>
-            </div>
-            <a href="mailto:lndrjs.untal@gmail.com" class="group inline-flex w-fit items-center gap-3 rounded-xl bg-[#a2f0d7] px-5 py-4 font-mono text-[11px] font-medium tracking-[0.08em] text-[#07120f] transition hover:bg-[#c2ffe9]">
-              START A CONVERSATION <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">↗</span>
-            </a>
-          </div>
-          <div class="relative mt-10 grid gap-4 border-t border-white/10 pt-6 sm:grid-cols-2 lg:grid-cols-3">
-            <a href="mailto:lndrjs.untal@gmail.com" class="group rounded-xl border border-white/[0.08] bg-black/10 p-4 transition hover:border-white/20">
-              <span class="mono-label !text-[9px]">EMAIL</span><span class="mt-2 block text-sm text-slate-200 group-hover:text-[#a1f0d8]">lndrjs.untal@gmail.com</span>
-            </a>
-            <a href="tel:+639619098620" class="group rounded-xl border border-white/[0.08] bg-black/10 p-4 transition hover:border-white/20">
-              <span class="mono-label !text-[9px]">PHONE</span><span class="mt-2 block text-sm text-slate-200 group-hover:text-[#a1f0d8]">+63 961 909 8620</span>
-            </a>
-            <div class="flex items-center gap-3 rounded-xl border border-white/[0.08] bg-black/10 p-4">
-              <a href="https://www.linkedin.com/in/leandro-jose-untal-a82864291/" target="_blank" rel="noreferrer" aria-label="LinkedIn" class="grid size-10 place-items-center rounded-lg border border-white/10 bg-white/[0.03] transition hover:border-[#91f2d55c] hover:bg-white/[0.06]"><img src="/linkedin.png" alt="" class="size-5 object-contain" loading="lazy" /></a>
-              <a href="https://github.com/dJangg0" target="_blank" rel="noreferrer" aria-label="GitHub" class="grid size-10 place-items-center rounded-lg border border-white/10 bg-white/[0.03] transition hover:border-[#91f2d55c] hover:bg-white/[0.06]"><img src="/github.png" alt="" class="size-5 object-contain" loading="lazy" /></a>
-              <span class="ml-1 font-mono text-[9px] tracking-[0.12em] text-slate-500">FIND ME ONLINE</span>
-            </div>
-          </div>
+  <section id="contact">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="path">~/<em>contact</em> $ ./ping --open</span>
+        <h2 class="glitch" data-text="Contact">Contact</h2>
+        <p class="lede">Building something with live data, maps, or a thoughtful AI layer? I want to hear about it.</p>
+      </div>
+      <div class="contact-box" data-spot>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between">
+          <h3 style="font-size:clamp(1.4rem,3vw,2rem);text-transform:uppercase">Have a system that needs to come alive?</h3>
+          <a class="btn" href="mailto:lndrjs.untal@gmail.com">Start a conversation</a>
         </div>
+        <div class="contact-grid">
+          <div class="contact-row"><span class="lbl">EMAIL</span><a href="mailto:lndrjs.untal@gmail.com">lndrjs.untal@gmail.com</a></div>
+          <div class="contact-row"><span class="lbl">PHONE</span><a href="tel:+639619098620">+63 961 909 8620</a></div>
+          <div class="contact-row"><span class="lbl">GITHUB</span><a href="https://github.com/dJangg0" target="_blank" rel="noreferrer">github.com/dJangg0 ↗</a></div>
+          <div class="contact-row"><span class="lbl">LINKEDIN</span><a href="https://www.linkedin.com/in/leandro-jose-untal-a82864291/" target="_blank" rel="noreferrer">leandro-jose-untal ↗</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
 
-        <footer class="flex flex-col gap-6 px-1 pb-4 pt-10 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p class="font-mono text-[10px] tracking-[0.12em] text-slate-400">LEANDRO<span class="text-[#90eed3]">.DEV</span></p>
-            <p class="mt-2 font-mono text-[9px] tracking-[0.08em] text-slate-600">DESIGNED TO BE USEFUL. BUILT TO KEEP MOVING.</p>
-          </div>
-          <div class="flex items-center gap-3" aria-label="Affiliations">
-            {affiliations.map((affiliation) => (
-              <div class="grid size-10 place-items-center rounded-lg border border-white/[0.08] bg-white/[0.025] p-2" title={affiliation.label}>
-                <img src={affiliation.image} alt={affiliation.label} class="max-h-full max-w-full object-contain" loading="lazy" />
-              </div>
-            ))}
-          </div>
-          <p class="font-mono text-[9px] tracking-[0.1em] text-slate-600">© {new Date().getFullYear()} LEANDRO JOSE UNTAL</p>
-        </footer>
-      </section>
-    </main>
+<footer>
+  <div class="wrap">
+    <span>© 2026 Leandro Jose Untal · Iloilo, PH</span>
+    <span class="affils">
+      <img src="/isat.png" alt="ISAT U" title="Iloilo State University of Science and Technology" loading="lazy" />
+      <img src="/kwadra.png" alt="Kwadra TBI" title="Kwadra TBI" loading="lazy" />
+      <img src="/isatech.png" alt="ISATECH" title="ISATECH Society" loading="lazy" />
+    </span>
+    <span><b>●</b> session active · build responsibly</span>
+  </div>
+</footer>
 
-    <script>
-      import { gsap } from 'gsap';
-      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+<dialog class="shotbox" id="shotBox" style="border:1px solid var(--red);background:var(--bg);padding:0;max-width:min(1280px,calc(100vw - 32px));color:var(--fg)">
+  <img id="boxImg" alt="" style="display:block;width:100%;height:auto;max-height:calc(100vh - 60px);object-fit:contain" />
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border-top:1px solid var(--line);font-family:var(--font-mono);font-size:.74rem;color:var(--muted)">
+    <span id="boxCap">preview</span>
+    <button class="btn ghost" id="boxClose" style="padding:7px 12px">Close</button>
+  </div>
+</dialog>
 
-      gsap.registerPlugin(ScrollTrigger);
+<script>
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePtr = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const sceneState = { progress: 0 };
-      const publishProgress = () => {
-        document.documentElement.style.setProperty('--scene-progress', sceneState.progress.toFixed(4));
-        window.dispatchEvent(new CustomEvent('portfolio:scene-progress', { detail: sceneState.progress }));
-      };
+  /* scramble */
+  const GL = '!<>-_\\/[]{}=+*^?#%$01';
+  function scramble(el, txt, dur){
+    if(reduce){ el.textContent = txt; return; }
+    dur = dur || 420;
+    const st = performance.now(), len = txt.length;
+    if(el._r) cancelAnimationFrame(el._r);
+    const step = (t) => {
+      const k = Math.min(1,(t-st)/dur), fx = Math.floor(k*len);
+      let o=''; for(let i=0;i<len;i++){ const c=txt[i]; o += (i<fx||c===' ') ? c : GL[(Math.random()*GL.length)|0]; }
+      el.textContent = o;
+      if(k<1) el._r = requestAnimationFrame(step); else el.textContent = txt;
+    };
+    el._r = requestAnimationFrame(step);
+  }
+  document.querySelectorAll('[data-scramble]').forEach((el)=>{
+    const txt = el.textContent;
+    el.addEventListener('mouseenter',()=>scramble(el,txt,360));
+    el.addEventListener('focus',()=>scramble(el,txt,360));
+  });
 
-      if (!reducedMotion) {
-        gsap.to(sceneState, {
-          progress: 1,
-          ease: 'none',
-          onUpdate: publishProgress,
-          scrollTrigger: {
-            trigger: '#page-scroll',
-            start: 'top top',
-            end: 'bottom bottom',
-            scrub: 1.2,
-          },
-        });
+  /* rotating role */
+  const roles = ['Full-stack engineer','Real-time systems builder','Geospatial + routing hacker','AI integration tinkerer','Hack4Gov Region VI champion','Hack4Health Top 10 finalist'];
+  const roleEl = document.getElementById('role');
+  let ri = 0;
+  if(!reduce && roleEl){ setInterval(()=>{ ri=(ri+1)%roles.length; scramble(roleEl, roles[ri], 700); }, 3200); }
 
-        gsap.utils.toArray<HTMLElement>('.reveal').forEach((element) => {
-          gsap.fromTo(
-            element,
-            { y: 22, autoAlpha: 0 },
-            {
-              y: 0,
-              autoAlpha: 1,
-              duration: 0.75,
-              ease: 'power2.out',
-              scrollTrigger: {
-                trigger: element,
-                start: 'top 88%',
-                toggleActions: 'play none none reverse',
-              },
-            },
-          );
-        });
+  /* glitch bursts + tears */
+  const glitchEls = [...document.querySelectorAll('.glitch')];
+  function burst(el){ el.classList.remove('burst'); void el.offsetWidth; el.classList.add('burst'); setTimeout(()=>el.classList.remove('burst'),450); }
+  glitchEls.forEach((el)=>{ if(!el.classList.contains('idle')) el.addEventListener('mouseenter',()=>burst(el)); });
+  const tear = document.querySelector('.tear');
+  function pageTear(){
+    if(!tear) return;
+    tear.innerHTML='';
+    const n = 3 + (Math.random()*4|0);
+    for(let i=0;i<n;i++){ const b=document.createElement('i'); b.style.top=(Math.random()*100)+'%'; b.style.height=(2+Math.random()*14)+'px'; tear.appendChild(b); }
+    document.body.classList.add('tearing');
+    setTimeout(()=>document.body.classList.remove('tearing'),260);
+  }
+  const op = document.getElementById('op');
+  function loop(){
+    const delay = 3500 + Math.random()*5000;
+    setTimeout(()=>{
+      if(!document.hidden){
+        const vis = glitchEls.filter((e)=>{const r=e.getBoundingClientRect();return r.bottom>0&&r.top<innerHeight;});
+        if(vis.length) burst(vis[(Math.random()*vis.length)|0]);
+        const roll = Math.random();
+        if(roll<.35) pageTear();
+        else if(roll<.55 && op){ op.classList.add('burst'); setTimeout(()=>op.classList.remove('burst'),420); }
       }
+      loop();
+    }, delay);
+  }
+  if(!reduce){ setTimeout(pageTear, 500); loop(); }
 
-      publishProgress();
-    </script>
-  </body>
+  /* spotlight */
+  const spot = document.querySelector('.fx-spot');
+  const ptr = {x: innerWidth*.7, y: innerHeight*.15, on:false};
+  addEventListener('pointermove', (e)=>{
+    ptr.x=e.clientX; ptr.y=e.clientY; ptr.on=e.pointerType==='mouse';
+    if(spot){ spot.style.setProperty('--mx', e.clientX+'px'); spot.style.setProperty('--my', e.clientY+'px'); }
+    const s = e.target.closest && e.target.closest('[data-spot]');
+    if(s){ const r=s.getBoundingClientRect(); s.style.setProperty('--x',(e.clientX-r.left)+'px'); s.style.setProperty('--y',(e.clientY-r.top)+'px'); }
+  }, {passive:true});
+
+  /* network canvas */
+  const net = document.querySelector('.fx-net');
+  const nx = net.getContext('2d');
+  let W=0,H=0,nodes=[],packets=[],nextPacket=0;
+  function sizeNet(){
+    W = net.width = innerWidth; H = net.height = innerHeight;
+    const n = Math.max(22, Math.min(72, Math.round(W*H/23000)));
+    nodes = Array.from({length:n}, ()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,r:Math.random()*1.3+.6}));
+    packets=[];
+  }
+  sizeNet(); addEventListener('resize', sizeNet);
+  const LINK=135, LINK2=LINK*LINK;
+  function drawNet(t){
+    nx.clearRect(0,0,W,H);
+    for(const n of nodes){
+      if(ptr.on){ const dx=ptr.x-n.x, dy=ptr.y-n.y, d=Math.hypot(dx,dy); if(d<220&&d>1){ n.vx+=dx/d*.01; n.vy+=dy/d*.01; } }
+      const sp=Math.hypot(n.vx,n.vy);
+      if(sp>.85){n.vx*=.92;n.vy*=.92;} else if(sp<.12){n.vx*=1.06;n.vy*=1.06;}
+      n.x+=n.vx; n.y+=n.vy;
+      if(n.x<-20)n.x=W+20; else if(n.x>W+20)n.x=-20;
+      if(n.y<-20)n.y=H+20; else if(n.y>H+20)n.y=-20;
+    }
+    nx.lineWidth=1;
+    for(let i=0;i<nodes.length;i++){ const a=nodes[i];
+      for(let j=i+1;j<nodes.length;j++){ const b=nodes[j], dx=a.x-b.x, dy=a.y-b.y, d2=dx*dx+dy*dy;
+        if(d2<LINK2){ nx.strokeStyle='rgba(0,255,102,'+((1-Math.sqrt(d2)/LINK)*.26).toFixed(3)+')'; nx.beginPath(); nx.moveTo(a.x,a.y); nx.lineTo(b.x,b.y); nx.stroke(); } } }
+    nx.fillStyle='rgba(52,255,120,.75)';
+    for(const n of nodes){ nx.beginPath(); nx.arc(n.x,n.y,n.r,0,6.283); nx.fill(); }
+    if(t>nextPacket){
+      nextPacket=t+260+Math.random()*420;
+      const a=(Math.random()*nodes.length)|0;
+      for(let k=0;k<nodes.length;k++){ const b=(a+1+k)%nodes.length, dx=nodes[a].x-nodes[b].x, dy=nodes[a].y-nodes[b].y;
+        if(dx*dx+dy*dy<LINK2){ packets.push({a,b,t0:t,dur:700+Math.random()*600,c:Math.random()<.2}); break; } }
+    }
+    packets=packets.filter((p)=>{
+      const k=(t-p.t0)/p.dur; if(k>=1) return false;
+      const A=nodes[p.a],B=nodes[p.b];
+      const x=A.x+(B.x-A.x)*k, y=A.y+(B.y-A.y)*k;
+      nx.fillStyle=p.c?'rgba(143,246,255,.22)':'rgba(0,255,102,.25)'; nx.beginPath(); nx.arc(x,y,4.5,0,6.283); nx.fill();
+      nx.fillStyle=p.c?'#d6ffe2':'#7dff9e'; nx.beginPath(); nx.arc(x,y,1.7,0,6.283); nx.fill();
+      return true;
+    });
+  }
+
+  /* cursor */
+  const ring=document.querySelector('.cur-ring'), dot=document.querySelector('.cur-dot');
+  const useCur = finePtr && !reduce;
+  let rx=ptr.x, ry=ptr.y;
+  if(useCur){
+    addEventListener('pointermove',(e)=>{ if(e.pointerType==='mouse') document.body.classList.add('has-cur'); },{passive:true});
+    document.addEventListener('pointerover',(e)=>{
+      const hot=e.target.closest && e.target.closest('a,button,.chip,.card,.cert,.kit,.op,.shot');
+      if(ring) ring.classList.toggle('hot', !!hot);
+    });
+  }
+  function moveCur(){
+    if(!useCur) return;
+    rx+=(ptr.x-rx)*.2; ry+=(ptr.y-ry)*.2;
+    if(ring) ring.style.transform='translate3d('+rx+'px,'+ry+'px,0)';
+    if(dot) dot.style.transform='translate3d('+ptr.x+'px,'+ptr.y+'px,0)';
+  }
+  function bgLoop(t){ drawNet(t||0); moveCur(); requestAnimationFrame(bgLoop); }
+  if(reduce) drawNet(0); else requestAnimationFrame(bgLoop);
+
+  /* click bursts */
+  const top=document.querySelector('.fx-top'), tx=top.getContext('2d');
+  let parts=[], rings=[], topRun=false;
+  function sizeTop(){ const d=Math.min(devicePixelRatio||1,2); top.width=innerWidth*d; top.height=innerHeight*d; tx.setTransform(d,0,0,d,0,0); }
+  sizeTop(); addEventListener('resize', sizeTop);
+  function burstAt(x,y){
+    for(let i=0;i<16;i++){ const a=Math.random()*6.283, s=1.6+Math.random()*4.2;
+      parts.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:420+Math.random()*420,t0:performance.now(),c:Math.random()<.22}); }
+    rings.push({x,y,t0:performance.now()});
+    if(!topRun){ topRun=true; requestAnimationFrame(topLoop); }
+  }
+  function topLoop(t){
+    tx.clearRect(0,0,innerWidth,innerHeight);
+    rings=rings.filter((r)=>{ const k=(t-r.t0)/520; if(k>=1) return false;
+      tx.strokeStyle='rgba(0,255,102,'+(1-k)*.9+')'; tx.lineWidth=1.5;
+      tx.beginPath(); tx.arc(r.x,r.y,6+k*46,0,6.283); tx.stroke(); return true; });
+    parts=parts.filter((p)=>{ const k=(t-p.t0)/p.life; if(k>=1) return false;
+      p.x+=p.vx; p.y+=p.vy; p.vx*=.93; p.vy*=.93;
+      tx.strokeStyle=p.c?'rgba(143,246,255,'+(1-k)+')':'rgba(0,230,90,'+(1-k)+')'; tx.lineWidth=1.6;
+      tx.beginPath(); tx.moveTo(p.x,p.y); tx.lineTo(p.x-p.vx*4,p.y-p.vy*4); tx.stroke(); return true; });
+    if(parts.length||rings.length) requestAnimationFrame(topLoop);
+    else { topRun=false; tx.clearRect(0,0,innerWidth,innerHeight); }
+  }
+  addEventListener('pointerdown',(e)=>{
+    if(useCur && ring) ring.classList.add('press');
+    if(reduce) return;
+    burstAt(e.clientX, e.clientY);
+    const z=e.target.closest && e.target.closest('a,button,.chip,.cert,.tag');
+    if(z){ z.classList.remove('zap'); void z.offsetWidth; z.classList.add('zap'); setTimeout(()=>z.classList.remove('zap'),380); }
+  },{passive:true});
+  addEventListener('pointerup',()=>{ if(useCur && ring) ring.classList.remove('press'); });
+
+  /* tilt */
+  if(finePtr && !reduce){
+    document.querySelectorAll('[data-tilt]').forEach((el)=>{
+      const max=+el.dataset.tilt||6;
+      el.addEventListener('pointermove',(e)=>{
+        if(e.pointerType!=='mouse') return;
+        const r=el.getBoundingClientRect(), px=(e.clientX-r.left)/r.width-.5, py=(e.clientY-r.top)/r.height-.5;
+        const card = el.closest('.card') || el;
+        el.style.setProperty('--ry',(px*max).toFixed(2)+'deg');
+        el.style.setProperty('--rx',(-py*max).toFixed(2)+'deg');
+      });
+      el.addEventListener('pointerleave',()=>{ el.style.setProperty('--rx','0deg'); el.style.setProperty('--ry','0deg'); });
+    });
+  }
+
+  /* nav + progress */
+  const nav=document.querySelector('.nav'), ind=document.querySelector('.nav-ind'), bar=document.querySelector('.scrollbar span');
+  function moveInd(){
+    if(!nav || !ind) return;
+    const a=nav.querySelector('a.on');
+    if(!a){ ind.style.width='0px'; return; }
+    ind.style.width=(a.offsetWidth-12)+'px';
+    ind.style.transform='translateX('+(a.offsetLeft+6)+'px)';
+  }
+  const links=[...document.querySelectorAll('.nav a')];
+  const secs=links.map((a)=>document.querySelector(a.getAttribute('href')));
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver((es)=>{ es.forEach((en)=>{ if(en.isIntersecting){ links.forEach((a)=>a.classList.toggle('on', a.getAttribute('href')==='#'+en.target.id)); moveInd(); } }); },{rootMargin:'-45% 0px -50% 0px'});
+    secs.forEach((s)=>s&&io.observe(s));
+  }
+  new MutationObserver(moveInd).observe(nav,{subtree:true,attributes:true,attributeFilter:['class']});
+  moveInd(); if(document.fonts && document.fonts.ready) document.fonts.ready.then(moveInd);
+  addEventListener('resize', moveInd);
+  let sTick=false;
+  addEventListener('scroll',()=>{
+    if(sTick) return; sTick=true;
+    requestAnimationFrame(()=>{
+      const max=document.documentElement.scrollHeight-innerHeight;
+      if(bar) bar.style.setProperty('--p', max>0 ? (scrollY/max).toFixed(4) : 0);
+      sTick=false;
+    });
+  },{passive:true});
+
+  /* reveal */
+  if('IntersectionObserver' in window && !reduce){
+    const els=[...document.querySelectorAll('.sec-head,.about-copy > *,.base-card,.card,.record,.certs,.kit')];
+    const io=new IntersectionObserver((es)=>es.forEach((en)=>{
+      if(!en.isIntersecting) return;
+      const el=en.target; io.unobserve(el);
+      el.classList.remove('pre');
+      const h=el.classList.contains('sec-head') && el.querySelector('h2');
+      if(h) setTimeout(()=>scramble(h,h.textContent,650),120);
+      setTimeout(()=>{ el.classList.remove('rv'); el.style.removeProperty('--d'); },900);
+    }),{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+    els.forEach((el)=>{
+      const r=el.getBoundingClientRect();
+      if(r.top<innerHeight*.95) return;
+      const idx=[...el.parentElement.children].indexOf(el);
+      el.style.setProperty('--d', Math.min(idx,5)*90+'ms');
+      el.classList.add('rv','pre'); io.observe(el);
+    });
+  }
+
+  /* lightbox */
+  const box=document.getElementById('shotBox'), boxImg=document.getElementById('boxImg'), boxCap=document.getElementById('boxCap');
+  document.querySelectorAll('.shot-open').forEach((b)=>{
+    b.addEventListener('click',()=>{
+      const src=b.getAttribute('data-full'), title=b.getAttribute('data-title');
+      if(boxImg){ boxImg.src=src; boxImg.alt=title || 'project preview'; }
+      if(boxCap) boxCap.textContent=title || 'preview';
+      if(typeof box.showModal==='function') box.showModal(); else box.setAttribute('open','');
+    });
+  });
+  const closeBtn=document.getElementById('boxClose');
+  if(closeBtn) closeBtn.addEventListener('click',()=>{ if(box.open) box.close(); });
+  if(box) box.addEventListener('click',(e)=>{ if(e.target===box) box.close(); });
+})();
+</script>
+</body>
 </html>
