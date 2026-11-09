@@ -4,6 +4,30 @@ import '../styles/global.css';
 const projects = [
   {
     number: '01',
+    kind: 'CLINIC WORKFLOWS',
+    title: 'Electronic Health Records (EHR)',
+    status: 'DEMO',
+    statusClass: 'dev',
+    description: 'Clinic EHR prototype for patient charts, appointment scheduling, QR check-in queues, visit notes and printable prescription drafts. A React + TypeScript demo with a PostgreSQL schema, Docker Compose environment and automated CI checks.',
+    stack: ['React', 'TypeScript', 'PostgreSQL', 'Docker Compose', 'GitHub Actions'],
+    image: '/projects/ehr-homepage.png',
+    imageAlt: 'Northstar Clinic EHR dashboard showing patient counts, appointments and clinic flow with sample records',
+    repoHref: 'https://github.com/trycharoo/Internal-Clinic-Web-app',
+  },
+  {
+    number: '02',
+    kind: 'FLOWER STOREFRONT',
+    title: 'Kim Flower Shop',
+    status: 'PROJECT',
+    statusClass: '',
+    description: 'Responsive flower shop storefront with a Sanity-managed product catalog, sale pricing and customizable branding. Built with Astro and Tailwind CSS, with an embedded Sanity Studio for managing products, announcements and site content.',
+    stack: ['Astro', 'TypeScript', 'Tailwind CSS', 'Sanity CMS'],
+    image: '/projects/flower-shop-homepage.png',
+    imageAlt: 'Kim Flower Shop homepage with Make room for flowers headline, navigation and floral hero artwork',
+    repoHref: 'https://github.com/dJangg0/kim-flower-shop',
+  },
+  {
+    number: '03',
     kind: 'CASHLESS CAMPUS',
     title: 'Online Coop',
     status: 'LIVE',
@@ -13,7 +37,7 @@ const projects = [
     image: '/coop.png',
   },
   {
-    number: '02',
+    number: '04',
     kind: 'CYBERSECURITY LAB',
     title: 'Hackafest Vulnerable Web App',
     status: 'LIVE',
@@ -23,7 +47,7 @@ const projects = [
     image: '/hack1.png',
   },
   {
-    number: '03',
+    number: '05',
     kind: 'CROSS-PLATFORM APP',
     title: 'Thribo Screening Tool',
     status: 'LIVE',
@@ -34,7 +58,7 @@ const projects = [
     href: 'https://thribo-app.web.app/',
   },
   {
-    number: '04',
+    number: '06',
     kind: 'CONNECTED SYSTEMS',
     title: 'Live Electrical Monitor',
     status: 'DEV',
@@ -44,7 +68,7 @@ const projects = [
     image: '/ppe.png',
   },
   {
-    number: '05',
+    number: '07',
     kind: 'LOCATION-AWARE HEALTH',
     title: 'AbTech Emergency Response',
     status: 'TOP 10',
@@ -54,7 +78,7 @@ const projects = [
     image: '/h4h1.jpg',
   },
   {
-    number: '06',
+    number: '08',
     kind: 'AI / MOBILE',
     title: 'ASL Interpreter Prototype',
     status: 'R&D',
@@ -67,9 +91,10 @@ const projects = [
 
 const kits = [
   { label: 'Languages', values: ['TypeScript', 'JavaScript', 'Python', 'Java', 'Kotlin', 'SQL', 'HTML5', 'CSS3'] },
-  { label: 'Web & Mobile', values: ['React', 'Ionic React', 'Node.js', 'Tailwind CSS', 'Android Studio'] },
+  { label: 'Web & Mobile', values: ['React', 'Astro', 'Ionic React', 'Node.js', 'Tailwind CSS', 'Sanity CMS', 'Android Studio'] },
+  { label: 'DevOps & Delivery', values: ['Docker', 'Docker Compose', 'GitHub Actions', 'CI/CD', 'Git', 'Linux'] },
   { label: 'AI & Tools', values: ['TensorFlow Lite', 'CNN Models', 'MediaPipe', 'FFmpeg'] },
-  { label: 'Security & Ops', values: ['Kali Linux', 'Nmap', 'Wireshark', 'OSINT', 'Burp-style testing'] },
+  { label: 'Security', values: ['Kali Linux', 'Nmap', 'Wireshark', 'OSINT', 'Burp-style testing'] },
   { label: 'Data & Realtime', values: ['Firebase', 'PostgreSQL', 'MySQL', 'Supabase', 'WebSockets', 'Redis'] },
   { label: 'CTF & Teams', values: ['Hack4Gov', 'Hack4Health', 'TryHackMe-style labs', 'Rapid prototyping'] },
 ];
@@ -79,6 +104,7 @@ const wins = [
   { ix: '02', nm: 'DOH Hack4Health — Top 10 National Finalist', ds: 'AbTech emergency response · DAP Tagaytay' },
   { ix: '03', nm: 'Full-stack + IoT builds shipped', ds: 'Coop payments · electrical monitor · Thribo app' },
   { ix: '04', nm: 'AI prototype for accessibility', ds: 'On-device ASL interpretation · CNN + TFLite' },
+  { ix: '05', nm: 'Clinic workflows + content-driven storefronts', ds: 'EHR prototype · Kim Flower Shop · Docker + CI pipelines' },
 ];
 ---
 
@@ -88,8 +114,8 @@ const wins = [
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#070a08" />
-  <meta name="description" content="Leandro Jose Untal — full-stack engineer building real-time systems, location-aware services, and practical AI." />
-  <title>Leandro Jose Untal — Full-stack Engineer</title>
+  <meta name="description" content="Leandro Jose Untal is a full-stack software developer and DevOps engineer based in Iloilo, Philippines, building web apps, clinic workflows and automated delivery pipelines." />
+  <title>Leandro Jose Untal — Full-stack Software Developer &amp; DevOps Engineer</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23070a08'/%3E%3Cpath d='M6 9l8 7-8 7' fill='none' stroke='%2300ff66' stroke-width='3'/%3E%3Crect x='16' y='21' width='10' height='3' fill='%2300ff66'/%3E%3C/svg%3E" />
 </head>
 <body>
@@ -131,11 +157,11 @@ const wins = [
           <span class="glitch idle" data-text="Leandro Jose">Leandro Jose</span>
           <span class="glitch idle thin" data-text="Untal">Untal</span>
         </h1>
-        <div class="role" aria-live="polite"><span class="pfx">&gt; </span><span id="role">Full-stack engineer</span><span class="caret" aria-hidden="true"></span></div>
-        <p class="lede">22-year-old developer from the Philippines turning ideas into working systems — real-time backends, location-aware services, and practical AI. Hack4Gov Region VI champion, DOH Hack4Health Top 10 finalist.</p>
+        <div class="role" aria-live="polite"><span class="pfx">&gt; </span><span id="role">Full-stack software developer</span><span class="caret" aria-hidden="true"></span></div>
+        <p class="lede">Full-stack software developer and DevOps engineer based in Iloilo, Philippines. I build practical web and mobile applications and the workflows that help them ship, from clinic EHR tools and storefronts to real-time systems. Hack4Gov Region VI champion and DOH Hack4Health Top 10 finalist.</p>
         <div class="cta">
           <a class="btn" href="#work" data-scramble>View work</a>
-          <a class="btn ghost" href="/resume.pdf" download="Leandro-Untal-Resume.pdf" data-scramble>Get resume</a>
+          <a class="btn ghost" href="/resume.pdf" target="_blank" rel="noopener noreferrer" data-scramble>View resume</a>
         </div>
       </div>
       <div class="op" id="op">
@@ -159,16 +185,17 @@ const wins = [
       <div class="sec-head">
         <span class="path">~/<em>about</em> $ cat profile.md</span>
         <h2 class="glitch" data-text="About">About</h2>
-        <p class="lede">Software that moves with the world — live data, connected devices, clear interfaces, dependable flow.</p>
+        <p class="lede">From the first interface to the delivery pipeline, I build software around the people who use it.</p>
       </div>
       <div class="about-grid">
         <div class="about-copy">
-          <p>I'm <strong>Leandro Jose Endriga Untal</strong> — a versatile undergrad developer who adapts fast across full-stack, AI/ML and security, now focusing toward <strong>software engineering + red-team security</strong>.</p>
-          <p>I built a mobile <strong>ASL interpreter (CNN + TensorFlow Lite)</strong> for on-device video understanding, and a <strong>panel-board / electrical monitoring system</strong> streaming voltage, current and temperature with real-time alerts.</p>
-          <p>Hackathons shaped how I work: rapid prototyping, design sprints, performing under pressure — from winning <strong>Hack4Gov Region VI</strong> to national finals at <strong>DOH Hack4Health in Tagaytay</strong>.</p>
+          <p>I'm <strong>Leandro Jose Endriga Untal</strong>, a <strong>full-stack software developer and DevOps engineer</strong> based in Iloilo, Philippines. I turn everyday workflows into practical web and mobile applications, connecting clear interfaces with backend services, data and deployment workflows.</p>
+          <p>My recent work includes a <strong>clinic EHR prototype</strong> for patient records, scheduling and QR queues, and <strong>Kim Flower Shop</strong>, an Astro storefront with a Sanity-managed catalog. I use <strong>Docker, GitHub Actions and CI/CD</strong> to make projects easier to build, test and deliver.</p>
+          <p>My projects also span cashless campus payments, <strong>real-time electrical monitoring</strong> and an on-device <strong>ASL interpreter using CNNs and TensorFlow Lite</strong>. I enjoy learning across disciplines and turning ideas into tools people can use.</p>
+          <p>Hackathons shaped how I work: rapid prototyping, collaboration and clear decisions under pressure. I led my team to the <strong>Hack4Gov Region VI championship</strong> and reached the <strong>DOH Hack4Health national Top 10</strong> with AbTech.</p>
           <dl class="roe">
             <dt>Scope</dt><dd>Real users, real constraints, usable systems</dd>
-            <dt>Method</dt><dd>Evidence first, reproducible steps, clear reports</dd>
+            <dt>Method</dt><dd>Clear interfaces, reproducible builds, automated checks</dd>
             <dt>Mode</dt><dd>Team player · detail-oriented · problem-solver</dd>
           </dl>
         </div>
@@ -209,7 +236,7 @@ const wins = [
       <div class="sec-head">
         <span class="path">~/<em>work</em> $ ls projects/ --grid</span>
         <h2 class="glitch" data-text="Selected Work">Selected Work</h2>
-        <p class="lede">Fintech, security labs, connected devices, health tech, on-device AI. Hover a card to scan it.</p>
+        <p class="lede">Recent clinic and storefront projects, alongside cashless payments, security labs, connected devices and on-device AI. Explore the code or open a project preview.</p>
       </div>
       <div class="cards">
         {projects.map((p) => (
@@ -217,13 +244,14 @@ const wins = [
             <span class="corner tl"></span><span class="corner br"></span>
             <div class="card-top"><span>PRJ_{p.number} · {p.kind}</span><span class={`status ${p.statusClass}`}>{p.status}</span></div>
             <button class="thumb shot-open" data-full={p.image} data-title={p.title} aria-label={`Enlarge ${p.title}`}>
-              <img src={p.image} alt={`${p.title} preview`} loading="lazy" />
+              <img src={p.image} alt={p.imageAlt ?? `${p.title} preview`} loading="lazy" />
               <span class="thumb-cta">OPEN_</span>
             </button>
             <h3>{p.title}</h3>
             <p>{p.description}</p>
             <div class="tags">{p.stack.map((s) => <span class="tag">{s}</span>)}
               {p.href && <a class="tag" href={p.href} target="_blank" rel="noreferrer" style="color:var(--red);border-color:rgba(0,255,102,.4)">LIVE ↗</a>}
+              {p.repoHref && <a class="tag" href={p.repoHref} target="_blank" rel="noopener noreferrer" aria-label={`View ${p.title} on GitHub`} style="color:var(--red);border-color:rgba(0,255,102,.4)">GITHUB ↗</a>}
             </div>
           </article>
         ))}
@@ -257,7 +285,7 @@ const wins = [
           <span class="corner tl"></span><span class="corner br"></span>
           <div class="card-top"><span>NEXT_</span><span class="status dev">OPEN_SLOT</span></div>
           <h3>Your project here</h3>
-          <p>Have a real-time system, map workflow, or AI layer that needs to come alive? Let's scope it.</p>
+          <p>Have a web app, clinic workflow, storefront or delivery pipeline to build? Let's scope it.</p>
           <div class="cta" style="margin-top:6px"><a class="btn" href="#contact">Ping me</a></div>
         </article>
       </div>
@@ -295,7 +323,7 @@ const wins = [
       <div class="sec-head">
         <span class="path">~/<em>contact</em> $ ./ping --open</span>
         <h2 class="glitch" data-text="Contact">Contact</h2>
-        <p class="lede">Building something with live data, maps, or a thoughtful AI layer? I want to hear about it.</p>
+        <p class="lede">Building a web app, connecting backend services or improving how your software ships? I want to hear about it.</p>
       </div>
       <div class="contact-box" data-spot>
         <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between">
@@ -362,7 +390,7 @@ import { initIloiloMap } from '../scripts/iloilo-map.js';
   });
 
   /* rotating role */
-  const roles = ['Full-stack engineer','Real-time systems builder','Geospatial + routing hacker','AI integration tinkerer','Hack4Gov Region VI champion','Hack4Health Top 10 finalist'];
+  const roles = ['Full-stack software developer','DevOps engineer','Web + mobile application builder','Real-time systems builder','Hack4Gov Region VI champion','Hack4Health Top 10 finalist'];
   const roleEl = document.getElementById('role');
   let ri = 0;
   if(!reduce && roleEl){ setInterval(()=>{ ri=(ri+1)%roles.length; scramble(roleEl, roles[ri], 700); }, 3200); }
