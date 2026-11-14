@@ -92,20 +92,47 @@ const projects = [
 
 const kits = [
   { label: 'Languages', values: ['TypeScript', 'JavaScript', 'Python', 'Java', 'Kotlin', 'SQL', 'HTML5', 'CSS3'] },
-  { label: 'Web & Mobile', values: ['React', 'Astro', 'Ionic React', 'Node.js', 'Tailwind CSS', 'Sanity CMS', 'Android Studio'] },
-  { label: 'DevOps & Delivery', values: ['Docker', 'Docker Compose', 'GitHub Actions', 'CI/CD', 'Git', 'Linux'] },
-  { label: 'AI & Tools', values: ['TensorFlow Lite', 'CNN Models', 'MediaPipe', 'FFmpeg'] },
-  { label: 'Security', values: ['Kali Linux', 'Nmap', 'Wireshark', 'OSINT', 'Burp-style testing'] },
-  { label: 'Data & Realtime', values: ['Firebase', 'PostgreSQL', 'MySQL', 'Supabase', 'WebSockets', 'Redis'] },
+  { label: 'Web & Mobile', values: ['React', 'React Native', 'Astro', 'Ionic React', 'Node.js', 'Tailwind CSS', 'Sanity CMS', 'Android Studio'] },
+  { label: 'DevOps & Delivery', values: ['Docker', 'Docker Compose', 'GitHub Actions', 'CI/CD', 'Git', 'GitHub', 'Linux', 'Conductor'] },
+  { label: 'AI & Tools', values: ['TensorFlow Lite', 'Machine learning', 'Transfer learning', 'CNN Models', 'MediaPipe', 'FFmpeg', 'AI-assisted coding'] },
+  { label: 'Security', values: ['Kali Linux', 'Nmap', 'Wireshark', 'OSINT', 'Information security'] },
+  { label: 'Data & Realtime', values: ['Firebase', 'SQLite', 'PostgreSQL', 'MySQL', 'Supabase', 'WebSockets', 'Redis'] },
   { label: 'CTF & Teams', values: ['Hack4Gov', 'Hack4Health', 'TryHackMe-style labs', 'Rapid prototyping'] },
+];
+
+const experience = [
+  {
+    period: 'JUN 2021 — PRESENT',
+    role: 'Front-End Developer',
+    organization: 'The B Academy PH',
+    description: 'Developed and contributed to THRIBO, a screening and assessment application based on global healthcare standards for digital patient assessment and health data collection.',
+    tags: ['THRIBO', 'Healthcare', 'Web + mobile'],
+  },
+  {
+    period: 'MAY 2022 — PRESENT',
+    role: 'Freelance IT Maintenance',
+    organization: 'Independent',
+    description: 'Provide community-based device diagnostics and support, and configure network switches, Wi-Fi, DHCP and DNS for stable connectivity.',
+    tags: ['IT support', 'Networking', 'Troubleshooting'],
+  },
+  {
+    period: '2026',
+    role: 'Full-Stack Developer / DevOps',
+    organization: 'XICAR Ride-Hailing App',
+    description: 'Built a local Iloilo ride-hailing application from scratch and supported staging and beta environments, CI/CD automation, self-hosted services, secrets and server management.',
+    tags: ['Full-stack', 'CI/CD', 'Infrastructure'],
+  },
 ];
 
 const wins = [
   { ix: '01', nm: 'Hack4Gov 3 — Region VI Champion', ds: 'Led ISAT U team · day-long CTF · July 16, 2024' },
   { ix: '02', nm: 'DOH Hack4Health — Top 10 National Finalist', ds: 'AbTech emergency response · DAP Tagaytay' },
-  { ix: '03', nm: 'Full-stack + IoT builds shipped', ds: 'Coop payments · electrical monitor · Thribo app' },
-  { ix: '04', nm: 'AI prototype for accessibility', ds: 'On-device ASL interpretation · CNN + TFLite' },
-  { ix: '05', nm: 'Clinic workflows + content-driven storefronts', ds: 'EHR prototype · Kim Flower Shop · Docker + CI pipelines' },
+  { ix: '03', nm: 'Civil Service Professional Passer', ds: 'Professional eligibility' },
+  { ix: '04', nm: 'Top 101 · v1t Online CTF', ds: 'Placed among 1,300 participants' },
+  { ix: '05', nm: 'Dean’s Lister · TOPCIT IT Competency Taker', ds: 'Academic recognition · IT competency assessment' },
+  { ix: '06', nm: 'Full-stack + IoT builds shipped', ds: 'Coop payments · electrical monitor · Thribo app' },
+  { ix: '07', nm: 'AI prototype for accessibility', ds: 'On-device ASL interpretation · CNN + TFLite' },
+  { ix: '08', nm: 'Clinic workflows + content-driven storefronts', ds: 'EHR prototype · Kim Flower Shop · Docker + CI pipelines' },
 ];
 ---
 
@@ -136,10 +163,12 @@ const wins = [
   <div class="bar-in">
     <nav class="nav" aria-label="Sections">
       <a href="#about" data-scramble>About</a>
+      <a href="#experience" data-scramble>Experience</a>
       <a href="#work" data-scramble>Work</a>
       <a href="#ops" data-scramble>Field-Notes</a>
       <a href="#arsenal" data-scramble>Arsenal</a>
       <a href="#contact" data-scramble>Contact</a>
+      <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" data-scramble>Resume ↗</a>
       <span class="nav-ind" aria-hidden="true"></span>
     </nav>
   </div>
@@ -159,10 +188,11 @@ const wins = [
           <span class="glitch idle thin" data-text="Untal">Untal</span>
         </h1>
         <div class="role" aria-live="polite"><span class="pfx">&gt; </span><span id="role">Full-stack software developer</span><span class="caret" aria-hidden="true"></span></div>
-        <p class="lede">Full-stack software developer and DevOps engineer based in Iloilo, Philippines. I build practical web and mobile applications and the workflows that help them ship, from clinic EHR tools and storefronts to real-time systems. Hack4Gov Region VI champion and DOH Hack4Health Top 10 finalist.</p>
+        <p class="lede">Computer Science graduate and full-stack software developer based in Iloilo, Philippines, with 2+ years in web and mobile development and 3+ years in freelance IT maintenance. I build useful applications and the workflows that help them ship. Hack4Gov Region VI champion and DOH Hack4Health Top 10 finalist.</p>
         <div class="cta">
           <a class="btn" href="#work" data-scramble>View work</a>
-          <a class="btn ghost" href="/resume.pdf" target="_blank" rel="noopener noreferrer" data-scramble>View resume</a>
+          <a class="btn ghost" href="/resume.pdf" target="_blank" rel="noopener noreferrer" data-scramble>View résumé</a>
+          <a class="btn ghost" href="/resume.pdf" download="Leandro-Jose-Untal-Resume.pdf" data-scramble>Download résumé ↓</a>
         </div>
       </div>
       <div class="op" id="op">
@@ -190,9 +220,9 @@ const wins = [
       </div>
       <div class="about-grid">
         <div class="about-copy">
-          <p>I'm <strong>Leandro Jose Endriga Untal</strong>, a <strong>full-stack software developer and DevOps engineer</strong> based in Iloilo, Philippines. I turn everyday workflows into practical web and mobile applications, connecting clear interfaces with backend services, data and deployment workflows.</p>
+          <p>I'm <strong>Leandro Jose Endriga Untal</strong>, a <strong>Computer Science graduate</strong> and full-stack software developer based in Iloilo, Philippines. I bring over two years of web and mobile development experience, alongside more than three years of freelance IT maintenance work.</p>
           <p>My recent work includes a <strong>clinic EHR prototype</strong> for patient records, scheduling and QR queues, and <strong>Kim Flower Shop</strong>, an Astro storefront with a Sanity-managed catalog. I use <strong>Docker, GitHub Actions and CI/CD</strong> to make projects easier to build, test and deliver.</p>
-          <p>My projects also span cashless campus payments, <strong>real-time electrical monitoring</strong> and an on-device <strong>ASL interpreter using CNNs and TensorFlow Lite</strong>. I enjoy learning across disciplines and turning ideas into tools people can use.</p>
+          <p>My projects also span cashless campus payments, <strong>real-time electrical monitoring</strong> and an on-device <strong>ASL interpreter using CNNs and TensorFlow Lite</strong>. I’m currently expanding my skills in cybersecurity and ethical hacking.</p>
           <p>Hackathons shaped how I work: rapid prototyping, collaboration and clear decisions under pressure. I led my team to the <strong>Hack4Gov Region VI championship</strong> and reached the <strong>DOH Hack4Health national Top 10</strong> with AbTech.</p>
           <dl class="roe">
             <dt>Scope</dt><dd>Real users, real constraints, usable systems</dd>
@@ -236,6 +266,29 @@ const wins = [
           <figure class="shot"><img src="/ez1.jpg" alt="Celebrating the Hack4Gov win" loading="lazy" /><figcaption>Hack4Gov · Finals</figcaption></figure>
           <figure class="shot"><img src="/h4h1.jpg" alt="AbTech at Hack4Health" loading="lazy" /><figcaption>Hack4Health · Top 10</figcaption></figure>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="path">~/<em>experience</em> $ cat work-history.log</span>
+        <h2 class="glitch" data-text="Experience">Experience</h2>
+        <p class="lede">Product development, IT support, and the systems that keep services running.</p>
+      </div>
+      <div class="experience-list">
+        {experience.map((item, index) => (
+          <article class="experience-item" data-spot>
+            <span class="experience-index">0{index + 1}</span>
+            <div class="experience-main">
+              <div class="experience-heading"><h3>{item.role}</h3><span class="experience-period">{item.period}</span></div>
+              <p class="experience-org">{item.organization}</p>
+              <p>{item.description}</p>
+              <div class="tags">{item.tags.map((tag) => <span class="tag">{tag}</span>)}</div>
+            </div>
+          </article>
+        ))}
       </div>
     </div>
   </section>
