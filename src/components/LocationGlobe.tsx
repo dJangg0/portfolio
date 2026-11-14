@@ -5,6 +5,10 @@ import * as THREE from 'three';
 
 const HOME_LONGITUDE = 122.559;
 const HOME_LATITUDE = 10.717;
+const HOME_DISTANCE = 3.25;
+const MIN_DISTANCE = 1.85;
+const MAX_DISTANCE = 5.4;
+const MAX_LATITUDE = 1.15;
 const HOME_ROTATION = new THREE.Vector2(THREE.MathUtils.degToRad(HOME_LATITUDE), -Math.PI / 2 - THREE.MathUtils.degToRad(HOME_LONGITUDE));
 const HOME_POSITION = new THREE.Vector3(
   Math.cos(THREE.MathUtils.degToRad(HOME_LATITUDE)) * Math.cos(THREE.MathUtils.degToRad(HOME_LONGITUDE)),
@@ -85,10 +89,23 @@ const atmosphereShader = /* glsl */ `
 type EarthTextures = { day: THREE.Texture; night: THREE.Texture; cloud: THREE.Texture };
 type Motion = {
   rotation: THREE.Vector2;
-  velocity: THREE.Vector2;
+  rotationTarget: THREE.Vector2;
+  rotationSpring: THREE.Vector2;
+  inertia: THREE.Vector2;
+  zoom: number;
+  zoomTarget: number;
+  zoomSpring: number;
   dragging: boolean;
   flight: { from: THREE.Vector2; elapsed: number; duration: number } | null;
 };
+
+// A critically damped spring settles without the sharp stop of linear easing.
+function spring(value: number, target: number, velocity: number, frequency: number, dt: number): [number, number] {
+  const offset = value - target;
+  const decay = Math.exp(-frequency * dt);
+  return [target + (offset * (1 + frequency * dt) + velocity * dt) * decay,
+    (velocity * (1 - frequency * dt) - offset * frequency * frequency * dt) * decay];
+}
 
 function GlobeScene({ textures, motion, label, reduced }: {
   textures: EarthTextures;
@@ -126,20 +143,44 @@ function GlobeScene({ textures, motion, label, reduced }: {
     if (!group.current) return;
     const dt = Math.min(delta, 0.05);
     clock.current += dt;
+    if (reduced) {
+      motion.zoom = Math.log(motion.zoomTarget);
+      motion.zoomSpring = 0;
+    } else {
+      [motion.zoom, motion.zoomSpring] = spring(motion.zoom, Math.log(motion.zoomTarget), motion.zoomSpring, 10, dt);
+      const bounded = THREE.MathUtils.clamp(motion.zoom, Math.log(MIN_DISTANCE), Math.log(MAX_DISTANCE));
+      if (bounded !== motion.zoom) { motion.zoom = bounded; motion.zoomSpring = 0; }
+    }
+    camera.position.z = Math.exp(motion.zoom);
+    camera.updateMatrixWorld();
     let zoom = 1;
     if (motion.flight) {
       motion.flight.elapsed += dt;
       const progress = reduced ? 1 : Math.min(1, motion.flight.elapsed / motion.flight.duration);
       const ease = progress * progress * (3 - 2 * progress);
       motion.rotation.lerpVectors(motion.flight.from, HOME_ROTATION, ease);
+      motion.rotationTarget.copy(motion.rotation);
+      motion.rotationSpring.set(0, 0);
       zoom = 1 - Math.sin(progress * Math.PI) * 0.08;
       if (progress === 1) motion.flight = null;
-    } else if (!motion.dragging && !reduced) {
-      motion.rotation.addScaledVector(motion.velocity, dt * 40);
-      motion.velocity.multiplyScalar(Math.exp(-dt * 6));
+    } else {
+      if (!motion.dragging && !reduced) {
+        motion.rotationTarget.addScaledVector(motion.inertia, dt);
+        motion.inertia.multiplyScalar(Math.exp(-dt * 5.5));
+      }
+      motion.rotationTarget.x = THREE.MathUtils.clamp(motion.rotationTarget.x, -MAX_LATITUDE, MAX_LATITUDE);
+      if (reduced) {
+        motion.rotation.copy(motion.rotationTarget);
+        motion.rotationSpring.set(0, 0);
+        motion.inertia.set(0, 0);
+      } else {
+        [motion.rotation.x, motion.rotationSpring.x] = spring(motion.rotation.x, motion.rotationTarget.x, motion.rotationSpring.x, 17, dt);
+        [motion.rotation.y, motion.rotationSpring.y] = spring(motion.rotation.y, motion.rotationTarget.y, motion.rotationSpring.y, 17, dt);
+      }
     }
-    motion.rotation.x = THREE.MathUtils.clamp(motion.rotation.x, -1.15, 1.15);
-    const drift = !reduced && !motion.dragging && motion.velocity.lengthSq() < 0.00001 ? Math.sin(clock.current * 0.18) * 0.016 : 0;
+    const boundedPitch = THREE.MathUtils.clamp(motion.rotation.x, -MAX_LATITUDE, MAX_LATITUDE);
+    if (boundedPitch !== motion.rotation.x) { motion.rotation.x = boundedPitch; motion.rotationSpring.x = 0; }
+    const drift = !reduced && !motion.dragging && motion.inertia.lengthSq() < 0.00001 ? Math.sin(clock.current * 0.18) * 0.016 : 0;
     group.current.rotation.set(motion.rotation.x, motion.rotation.y + drift, 0);
     group.current.scale.setScalar(zoom);
     if (clouds.current && !reduced) clouds.current.rotation.y = clock.current * 0.004;
@@ -209,9 +250,15 @@ class GlobeBoundary extends Component<{ children: ReactNode; onFailure: () => vo
 export default function LocationGlobe() {
   const root = useRef<HTMLDivElement>(null);
   const label = useRef<HTMLDivElement>(null);
-  const drag = useRef<{ x: number; y: number; pointer: number; touch: boolean } | null>(null);
+  const drag = useRef<{ x: number; y: number; time: number; pointer: number; touch: boolean; speed: THREE.Vector2 } | null>(null);
   const renderFrame = useRef<() => void>(() => {});
-  const motion = useRef<Motion>({ rotation: new THREE.Vector2(HOME_ROTATION.x - 0.1, HOME_ROTATION.y + 0.95), velocity: new THREE.Vector2(), dragging: false, flight: null });
+  const motion = useRef<Motion>({
+    rotation: new THREE.Vector2(HOME_ROTATION.x - 0.1, HOME_ROTATION.y + 0.95),
+    rotationTarget: new THREE.Vector2(HOME_ROTATION.x - 0.1, HOME_ROTATION.y + 0.95),
+    rotationSpring: new THREE.Vector2(), inertia: new THREE.Vector2(),
+    zoom: Math.log(HOME_DISTANCE), zoomTarget: HOME_DISTANCE, zoomSpring: 0,
+    dragging: false, flight: null,
+  });
   const [textures, setTextures] = useState<EarthTextures | null>(null);
   const [failed, setFailed] = useState(false);
   const [active, setActive] = useState(false);
@@ -227,7 +274,13 @@ export default function LocationGlobe() {
     const media = matchMedia('(prefers-reduced-motion: reduce)');
     const updateMotion = () => {
       setReduced(media.matches);
-      if (media.matches) { motion.current.rotation.copy(HOME_ROTATION); motion.current.flight = null; motion.current.velocity.set(0, 0); }
+      if (media.matches) {
+        motion.current.rotation.copy(HOME_ROTATION);
+        motion.current.rotationTarget.copy(HOME_ROTATION);
+        motion.current.rotationSpring.set(0, 0);
+        motion.current.inertia.set(0, 0);
+        motion.current.flight = null;
+      }
     };
     updateMotion();
     media.addEventListener('change', updateMotion);
@@ -236,11 +289,14 @@ export default function LocationGlobe() {
     observer.observe(element);
     document.addEventListener('visibilitychange', updateVisibility);
     const goHome = () => {
-      motion.current.velocity.set(0, 0);
+      motion.current.inertia.set(0, 0);
+      motion.current.rotationSpring.set(0, 0);
+      motion.current.zoomTarget = HOME_DISTANCE;
       const angle = motion.current.rotation.y;
       motion.current.rotation.y = HOME_ROTATION.y + THREE.MathUtils.euclideanModulo(angle - HOME_ROTATION.y + Math.PI, Math.PI * 2) - Math.PI;
+      motion.current.rotationTarget.copy(motion.current.rotation);
       motion.current.flight = { from: motion.current.rotation.clone(), elapsed: 0, duration: 2.6 };
-      if (media.matches) { motion.current.rotation.copy(HOME_ROTATION); motion.current.flight = null; }
+      if (media.matches) { motion.current.rotation.copy(HOME_ROTATION); motion.current.rotationTarget.copy(HOME_ROTATION); motion.current.flight = null; }
       renderFrame.current();
     };
     window.addEventListener('portfolio:globe-home', goHome);
@@ -289,18 +345,40 @@ export default function LocationGlobe() {
     if (failed) window.dispatchEvent(new CustomEvent('portfolio:globe-fallback'));
   }, [failed]);
 
+  useEffect(() => {
+    const element = root.current;
+    if (!element || failed) return;
+    const wheelZoom = (event: WheelEvent) => {
+      if (!event.deltaY) return;
+      const unit = event.deltaMode === WheelEvent.DOM_DELTA_LINE ? 16 : event.deltaMode === WheelEvent.DOM_DELTA_PAGE ? element.clientHeight : 1;
+      const delta = THREE.MathUtils.clamp(event.deltaY * unit, -160, 160);
+      const next = THREE.MathUtils.clamp(motion.current.zoomTarget * Math.exp(delta * 0.00065), MIN_DISTANCE, MAX_DISTANCE);
+      if (next === motion.current.zoomTarget) return;
+      event.preventDefault();
+      motion.current.zoomTarget = next;
+      renderFrame.current();
+    };
+    element.addEventListener('wheel', wheelZoom, { passive: false });
+    return () => element.removeEventListener('wheel', wheelZoom);
+  }, [failed]);
+
   const pointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
     if (failed || event.button !== 0 || !event.isPrimary) return;
-    drag.current = { x: event.clientX, y: event.clientY, pointer: event.pointerId, touch: event.pointerType === 'touch' };
+    drag.current = { x: event.clientX, y: event.clientY, time: performance.now(), pointer: event.pointerId, touch: event.pointerType === 'touch', speed: new THREE.Vector2() };
     motion.current.dragging = true;
     motion.current.flight = null;
-    motion.current.velocity.set(0, 0);
+    motion.current.rotationTarget.copy(motion.current.rotation);
+    motion.current.rotationSpring.set(0, 0);
+    motion.current.inertia.set(0, 0);
     event.currentTarget.setPointerCapture(event.pointerId);
     event.currentTarget.style.cursor = 'grabbing';
     renderFrame.current();
   };
   const release = (event: ReactPointerEvent<HTMLDivElement>) => {
     if (drag.current?.pointer !== event.pointerId) return;
+    const last = drag.current;
+    motion.current.inertia.copy(last.speed);
+    if (event.type !== 'pointerup' || performance.now() - last.time > 90) motion.current.inertia.set(0, 0);
     drag.current = null;
     motion.current.dragging = false;
     if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
@@ -308,34 +386,38 @@ export default function LocationGlobe() {
     renderFrame.current();
   };
 
-  return <div ref={root} role={failed ? 'img' : 'group'} tabIndex={failed ? undefined : 0} aria-label={failed ? 'Earth view. Home base: Iloilo City, Philippines.' : 'Interactive Earth, focused on Iloilo, Philippines. Drag to rotate, use arrow keys to explore, or press Home to return to Iloilo.'}
+  return <div ref={root} role={failed ? 'img' : 'group'} tabIndex={failed ? undefined : 0} aria-label={failed ? 'Earth view. Home base: Iloilo City, Philippines.' : 'Interactive Earth, focused on Iloilo, Philippines. Drag to rotate, scroll to zoom, use arrow keys to explore, plus and minus to zoom, or press Home to return to Iloilo.'}
     style={{ ...fill, overflow: 'hidden', touchAction: 'pan-y', cursor: failed ? 'default' : 'grab' }}
     onPointerDown={pointerDown} onPointerUp={release} onPointerCancel={release} onLostPointerCapture={release}
     onPointerMove={event => {
       const last = drag.current;
       if (!last || last.pointer !== event.pointerId) return;
-      const dx = (event.clientX - last.x) * 0.006;
-      const dy = last.touch ? 0 : (event.clientY - last.y) * 0.005;
-      motion.current.rotation.y += dx;
-      motion.current.rotation.x += dy;
-      motion.current.velocity.set(dy, dx);
+      const elapsed = Math.max(8, performance.now() - last.time) / 1000;
+      const dx = (event.clientX - last.x) * 0.0045;
+      const dy = last.touch ? 0 : (event.clientY - last.y) * 0.0038;
+      motion.current.rotationTarget.y += dx;
+      motion.current.rotationTarget.x = THREE.MathUtils.clamp(motion.current.rotationTarget.x + dy, -MAX_LATITUDE, MAX_LATITUDE);
+      last.speed.lerp(new THREE.Vector2(dy / elapsed, dx / elapsed).clampLength(0, 1.8), 1 - Math.exp(-elapsed * 18));
       last.x = event.clientX; last.y = event.clientY;
+      last.time = performance.now();
       renderFrame.current();
     }}
     onKeyDown={event => {
-      if (failed || !['Home', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)) return;
+      if (failed || !['Home', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', '+', '=', '-'].includes(event.key)) return;
       event.preventDefault();
       motion.current.flight = null;
-      motion.current.velocity.set(0, 0);
+      motion.current.inertia.set(0, 0);
       if (event.key === 'Home') window.dispatchEvent(new CustomEvent('portfolio:globe-home'));
-      if (event.key === 'ArrowLeft') motion.current.rotation.y -= 0.13;
-      if (event.key === 'ArrowRight') motion.current.rotation.y += 0.13;
-      if (event.key === 'ArrowUp') motion.current.rotation.x -= 0.1;
-      if (event.key === 'ArrowDown') motion.current.rotation.x += 0.1;
+      if (event.key === 'ArrowLeft') motion.current.rotationTarget.y -= 0.13;
+      if (event.key === 'ArrowRight') motion.current.rotationTarget.y += 0.13;
+      if (event.key === 'ArrowUp') motion.current.rotationTarget.x -= 0.1;
+      if (event.key === 'ArrowDown') motion.current.rotationTarget.x += 0.1;
+      if (event.key === '+' || event.key === '=') motion.current.zoomTarget = Math.max(MIN_DISTANCE, motion.current.zoomTarget / 1.2);
+      if (event.key === '-') motion.current.zoomTarget = Math.min(MAX_DISTANCE, motion.current.zoomTarget * 1.2);
       renderFrame.current();
     }}>
     {failed ? <StaticEarth /> : textures ? <GlobeBoundary onFailure={() => setFailed(true)}>
-      <Canvas camera={{ position: [0, 0, 3.25], fov: 42, near: 0.1, far: 30 }} frameloop={active ? reduced ? 'demand' : 'always' : 'never'} dpr={[1, 1.5]} gl={{ alpha: true, antialias: true, powerPreference: 'low-power' }} style={fill} aria-hidden="true" onCreated={({ gl, invalidate }) => {
+      <Canvas camera={{ position: [0, 0, HOME_DISTANCE], fov: 42, near: 0.1, far: 30 }} frameloop={active ? reduced ? 'demand' : 'always' : 'never'} dpr={[1, 1.5]} gl={{ alpha: true, antialias: true, powerPreference: 'low-power' }} style={fill} aria-hidden="true" onCreated={({ gl, invalidate }) => {
         renderFrame.current = invalidate;
         gl.setClearColor('#060d0b', 0);
         gl.domElement.addEventListener('webglcontextlost', () => setFailed(true), { once: true });

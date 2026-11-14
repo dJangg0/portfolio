@@ -216,7 +216,7 @@ const wins = [
               <span class="mk-plus tl" aria-hidden="true">+</span><span class="mk-plus br" aria-hidden="true">+</span>
             </div>
           </div>
-          <figcaption class="ft"><span id="locationHint"><b>●</b> Drag to look around · recenter to find home</span><span class="earth-credit"><a href="https://github.com/mrdoob/three.js/tree/dev/examples/textures/planets" target="_blank" rel="noopener">Earth textures · three.js ↗</a></span><span class="iloilo-credit" hidden><a href="https://www.geoboundaries.org/api/current/gbOpen/PHL/ADM3/" target="_blank" rel="noopener">NAMRIA · PSA · OCHA / geoBoundaries ↗</a> · <a href="https://creativecommons.org/licenses/by/3.0/igo/" target="_blank" rel="noopener">CC BY 3.0 IGO</a></span></figcaption>
+          <figcaption class="ft"><span id="locationHint"><b>●</b> Drag to rotate · scroll to zoom · recenter to find home</span><span class="earth-credit"><a href="https://github.com/mrdoob/three.js/tree/dev/examples/textures/planets" target="_blank" rel="noopener">Earth textures · three.js ↗</a></span><span class="iloilo-credit" hidden><a href="https://www.geoboundaries.org/api/current/gbOpen/PHL/ADM3/" target="_blank" rel="noopener">NAMRIA · PSA · OCHA / geoBoundaries ↗</a> · <a href="https://creativecommons.org/licenses/by/3.0/igo/" target="_blank" rel="noopener">CC BY 3.0 IGO</a></span></figcaption>
         </figure>
       </div>
 
@@ -613,7 +613,7 @@ import { initIloiloMap } from '../scripts/iloilo-map.js';
   function updateLocationHint(local){
     locationHint.innerHTML = local
       ? '<b>●</b> Iloilo · 42 municipalities + 2 cities'
-      : globeAvailable ? '<b>●</b> Drag to look around · recenter to find home'
+      : globeAvailable ? '<b>●</b> Drag to rotate · scroll to zoom · recenter to find home'
         : '<b>●</b> Iloilo, Philippines · explore the local map below';
   }
   function setLocationView(view, focusMap = false){
