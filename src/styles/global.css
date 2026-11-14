@@ -237,9 +237,46 @@ p { margin: 0; }
 .loc-card .ft a{color:var(--muted);text-decoration:none}
 .loc-card .ft a:hover{color:var(--red)}
 .map-card .ft{flex-wrap:wrap;gap:4px 12px;padding:10px 12px;font-size:.6rem;letter-spacing:.02em}
+.map-card [hidden]{display:none!important}
+.location-views{display:flex;gap:3px;padding:3px;border:1px solid var(--line);background:rgba(0,0,0,.3)}
+.location-views button{min-height:32px;min-width:58px;padding:5px 11px;border:0;background:transparent;color:var(--muted);font:inherit;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .2s,color .2s}
+.location-views button:hover{color:var(--fg)}
+.location-views button[aria-pressed="true"]{background:rgba(0,255,102,.12);color:var(--red)}
+.earth-panel{position:relative;isolation:isolate;width:100%;aspect-ratio:1;min-height:440px;overflow:hidden;background:
+  radial-gradient(ellipse at 65% 35%,rgba(34,83,82,.18),transparent 60%),
+  radial-gradient(ellipse at 30% 90%,rgba(0,255,102,.06),transparent 55%),#050a09}
+.earth-panel::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;opacity:.35;background-image:radial-gradient(#a2c9bf .6px,transparent .8px),radial-gradient(#69928a .5px,transparent .8px);background-size:83px 91px,137px 119px;background-position:12px 32px,47px 65px;mask-image:linear-gradient(#000,transparent 85%)}
+.earth-kicker{position:absolute;z-index:2;top:20px;left:24px;right:24px;display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-family:var(--font-mono);font-size:8px;letter-spacing:.13em;pointer-events:none}
+.earth-coordinates{color:#b5c9bd;letter-spacing:.03em}
+.globe-viewport{position:absolute;inset:0 0 100px;z-index:0}
+.earth-caption{position:absolute;z-index:2;left:24px;right:24px;bottom:100px;pointer-events:none;text-shadow:0 2px 18px #050a09}
+.earth-eyebrow{display:flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:8px;letter-spacing:.12em;color:#a7bcaf}
+.earth-eyebrow i{height:5px;width:5px;background:var(--red);border-radius:50%;box-shadow:0 0 10px rgba(0,255,102,.7)}
+.earth-caption h3{font-family:var(--font-display);font-weight:500;font-size:clamp(26px,3vw,37px);letter-spacing:-.035em;line-height:1.08;margin:10px 0 8px;text-transform:none;color:#e8f0e9}
+.earth-caption p{margin:0;font-size:11px;color:var(--muted)}
+.earth-caption p span{color:var(--red);margin-left:3px}
+.earth-actions{position:absolute;z-index:3;bottom:20px;left:24px;right:24px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:14px;border-top:1px solid rgba(143,163,152,.2)}
+.earth-actions button{min-height:36px;border:0;background:transparent;padding:5px 0;color:var(--muted);font-family:var(--font-mono);font-size:10px;letter-spacing:.03em;cursor:pointer;transition:color .2s}
+.earth-actions button:hover{color:var(--fg)}
+.earth-actions button:disabled{opacity:.35;cursor:default}
+.earth-actions #globeRecenter span{font-size:16px;line-height:0;margin-right:4px}
+.earth-actions #exploreIloilo{color:var(--red)}
+.earth-actions #exploreIloilo span{display:inline-block;margin-left:16px;transition:transform .2s}
+.earth-actions #exploreIloilo:hover span{transform:translate(2px,-2px)}
+.earth-noscript{position:absolute;inset:70px 24px auto;color:var(--muted);font-size:12px}
+.map-mode-heading{position:absolute;z-index:1;top:16px;left:18px;right:18px;display:flex;justify-content:space-between;gap:12px;pointer-events:none;font-family:var(--font-mono);font-size:8px;color:var(--muted);letter-spacing:.07em}
+.map-mode-heading>span:first-child{flex-shrink:0}
+.map-card[data-view="earth"] .ft{background:#080e0b}
 @media (max-width:480px){
   .map-card .hd{flex-wrap:wrap;row-gap:6px}
   #mapReadout{flex-basis:100%;text-align:left}
+  .map-card .hd{font-size:9px}
+  .earth-kicker{left:18px;right:18px;top:17px;font-size:7px;letter-spacing:.07em}
+  .earth-caption{left:18px;right:18px;bottom:100px}
+  .earth-caption h3{font-size:30px}
+  .earth-eyebrow{font-size:7px}
+  .earth-actions{left:18px;right:18px}
+  .map-mode-heading{flex-wrap:wrap;gap:3px}
 }
 .loc-marker .ping{opacity:0;transform-origin:center;transform-box:fill-box}
 .loc-card.scanning .ping.p1{animation:ping 1.1s ease-out infinite}

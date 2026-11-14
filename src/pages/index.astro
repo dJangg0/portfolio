@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import LocationGlobe from '../components/LocationGlobe';
 
 const projects = [
   {
@@ -199,15 +200,23 @@ const wins = [
             <dt>Mode</dt><dd>Team player · detail-oriented · problem-solver</dd>
           </dl>
         </div>
-        <figure class="loc-card map-card" data-spot id="locCard" style="margin:0">
-          <div class="hd"><span><i class="pin"></i>ILOILO / PHILIPPINES</span><span id="mapReadout" aria-live="polite">Hover or click to scan</span></div>
+        <figure class="loc-card map-card" data-spot id="locCard" style="margin:0" data-view="earth">
+          <div class="hd"><span><i class="pin"></i>HOME COORDINATES</span><span class="location-views" role="group" aria-label="Location view"><button type="button" data-location-view="earth" aria-pressed="true" aria-controls="earthPanel">Earth</button><button type="button" data-location-view="iloilo" aria-pressed="false" aria-controls="iloiloPanel">Iloilo</button></span></div>
           <div class="loc-map">
-            <div class="map-wrap">
+            <div class="earth-panel" id="earthPanel">
+              <div class="earth-kicker"><span>01 / A LITTLE PERSPECTIVE</span><span class="earth-coordinates">10.717°N · 122.559°E</span></div>
+              <div class="globe-viewport"><LocationGlobe client:visible /></div>
+              <div class="earth-caption"><span class="earth-eyebrow"><i></i>BASED ON EARTH. ROOTED IN ILOILO.</span><h3>A small dot.<br />A place to build.</h3><p>Iloilo City, Philippines <span>↗</span></p></div>
+              <div class="earth-actions"><button type="button" id="globeRecenter" aria-label="Recenter globe on Iloilo"><span aria-hidden="true">↺</span> Recenter</button><button type="button" id="exploreIloilo">Explore Iloilo <span aria-hidden="true">↗</span></button></div>
+              <noscript><p class="earth-noscript">Home base: Iloilo City, Philippines · 10.717°N, 122.559°E</p></noscript>
+            </div>
+            <div class="map-wrap" id="iloiloPanel" hidden>
+              <div class="map-mode-heading"><span>02 / CLOSER TO HOME</span><span id="mapReadout" aria-live="polite">Hover or click to scan</span></div>
               <canvas id="iloiloMap" tabindex="0" role="img" aria-label="Interactive dot map showing only Iloilo and its offshore islands. Hover anywhere or tap to scan a municipality. Use the left and right arrow keys to cycle through towns, Home for Iloilo City, or Escape to clear." aria-describedby="mapReadout"></canvas>
               <span class="mk-plus tl" aria-hidden="true">+</span><span class="mk-plus br" aria-hidden="true">+</span>
             </div>
           </div>
-          <figcaption class="ft"><span><b>●</b> Iloilo · 42 municipalities + 2 cities</span><span><a href="https://www.geoboundaries.org/api/current/gbOpen/PHL/ADM3/" target="_blank" rel="noopener">NAMRIA · PSA · OCHA / geoBoundaries ↗</a> · <a href="https://creativecommons.org/licenses/by/3.0/igo/" target="_blank" rel="noopener">CC BY 3.0 IGO</a></span></figcaption>
+          <figcaption class="ft"><span id="locationHint"><b>●</b> Drag to look around · recenter to find home</span><span class="earth-credit"><a href="https://github.com/mrdoob/three.js/tree/dev/examples/textures/planets" target="_blank" rel="noopener">Earth textures · three.js ↗</a></span><span class="iloilo-credit" hidden><a href="https://www.geoboundaries.org/api/current/gbOpen/PHL/ADM3/" target="_blank" rel="noopener">NAMRIA · PSA · OCHA / geoBoundaries ↗</a> · <a href="https://creativecommons.org/licenses/by/3.0/igo/" target="_blank" rel="noopener">CC BY 3.0 IGO</a></span></figcaption>
         </figure>
       </div>
 
@@ -594,6 +603,42 @@ import { initIloiloMap } from '../scripts/iloilo-map.js';
   }
 
   initIloiloMap();
+
+  /* Earth overview / local scanner */
+  const locationCard = document.getElementById('locCard');
+  const earthPanel = document.getElementById('earthPanel');
+  const iloiloPanel = document.getElementById('iloiloPanel');
+  const locationHint = document.getElementById('locationHint');
+  let globeAvailable = true;
+  function updateLocationHint(local){
+    locationHint.innerHTML = local
+      ? '<b>●</b> Iloilo · 42 municipalities + 2 cities'
+      : globeAvailable ? '<b>●</b> Drag to look around · recenter to find home'
+        : '<b>●</b> Iloilo, Philippines · explore the local map below';
+  }
+  function setLocationView(view, focusMap = false){
+    const local = view === 'iloilo';
+    locationCard.dataset.view = view;
+    earthPanel.hidden = local;
+    iloiloPanel.hidden = !local;
+    locationCard.querySelectorAll('[data-location-view]').forEach(button => {
+      button.setAttribute('aria-pressed', String(button.dataset.locationView === view));
+    });
+    locationCard.querySelector('.earth-credit').hidden = local;
+    locationCard.querySelector('.iloilo-credit').hidden = !local;
+    updateLocationHint(local);
+    if(local && focusMap) requestAnimationFrame(() => document.getElementById('iloiloMap').focus({preventScroll:true}));
+  }
+  locationCard.querySelectorAll('[data-location-view]').forEach(button => {
+    button.addEventListener('click', () => setLocationView(button.dataset.locationView));
+  });
+  document.getElementById('exploreIloilo').addEventListener('click', () => setLocationView('iloilo', true));
+  document.getElementById('globeRecenter').addEventListener('click', () => window.dispatchEvent(new Event('portfolio:globe-home')));
+  window.addEventListener('portfolio:globe-fallback', () => {
+    globeAvailable = false;
+    document.getElementById('globeRecenter').disabled = true;
+    updateLocationHint(locationCard.dataset.view === 'iloilo');
+  });
 
   /* lightbox */
   const box=document.getElementById('shotBox'), boxImg=document.getElementById('boxImg'), boxCap=document.getElementById('boxCap');
