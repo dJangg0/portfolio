@@ -329,9 +329,25 @@ p { margin: 0; }
 .thumb img{width:100%;height:100%;object-fit:cover;filter:saturate(.85) brightness(.9);transition:transform .6s cubic-bezier(.2,.8,.2,1),filter .4s}
 .card:hover .thumb img{transform:scale(1.05);filter:none}
 .thumb-cta{position:absolute;left:14px;bottom:14px;font-family:var(--font-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;padding:7px 11px;background:rgba(11,8,9,.85);border:1px solid var(--red);color:var(--fg)}
+.project-gallery{display:grid;grid-template-columns:minmax(0,320px);justify-content:center;gap:8px}
+.project-shot{display:block;width:100%;aspect-ratio:9/16;overflow:hidden;background:#050706;border:1px solid var(--line);padding:5px;cursor:zoom-in;transition:border-color .25s}
+.project-shot:hover{border-color:var(--red)}
+.project-shot img{width:100%;height:100%;object-fit:contain;transition:transform .4s}
+.card:hover .project-shot img{transform:scale(1.035)}
 .card.holo{min-height:260px;border-style:dashed;justify-content:center;align-items:flex-start}
 
 /* ---------- record ---------- */
+.experience-list{display:grid;gap:12px}
+.experience-item{display:grid;grid-template-columns:52px minmax(0,1fr);gap:18px;padding:clamp(20px,3vw,30px);border:1px solid var(--line);background:var(--surface);transition:border-color .25s,background .25s}
+.experience-item:hover{border-color:rgba(0,255,102,.55);background:linear-gradient(110deg,rgba(0,255,102,.045),transparent 45%),var(--surface)}
+.experience-index{font-family:var(--font-mono);font-size:.85rem;color:var(--red);padding-top:3px}
+.experience-main{display:grid;gap:10px}
+.experience-heading{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 20px}
+.experience-heading h3{font-size:1.35rem}
+.experience-period,.experience-org{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.experience-org{color:var(--red)}
+.experience-main>p:not(.experience-org){color:#c2cfc3;max-width:78ch}
+.experience-main .tags{margin:0;padding:0}
 .record{margin-top:28px;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);border:1px solid var(--line);background:var(--surface)}
 .record-copy{padding:clamp(22px,3vw,34px);display:flex;flex-direction:column;gap:16px;border-right:1px solid var(--line)}
 .rank{font-family:var(--font-display);font-size:clamp(2.6rem,6vw,4rem);font-weight:700;line-height:1;color:var(--red)}
@@ -414,6 +430,8 @@ body.has-cur .cur{opacity:1}
   .nav a{font-size:.66rem;padding:12px 6px}
   .nav a::before,.nav a::after{display:none}
   .op-tag{font-size:.64rem}
+  .experience-item{grid-template-columns:30px minmax(0,1fr);gap:10px;padding:18px 14px}
+  .experience-heading{align-items:flex-start;flex-direction:column}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
