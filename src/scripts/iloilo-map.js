@@ -89,6 +89,7 @@ export function initIloiloMap(){
     else s.fillText(txt.split('').join(' '), x, y);
   }
   function buildStatic(){
+    if(!w || !h || !land) return;
     stat = document.createElement('canvas'); stat.width = w*dpr; stat.height = h*dpr;
     const s = stat.getContext('2d'); s.setTransform(dpr,0,0,dpr,0,0);
     s.fillStyle = 'rgba(0,255,102,.035)'; s.fill(land, 'evenodd');
