@@ -626,7 +626,7 @@ import { initIloiloMap } from '../scripts/iloilo-map.js';
     ind.style.width=(a.offsetWidth-12)+'px';
     ind.style.transform='translateX('+(a.offsetLeft+6)+'px)';
   }
-  const links=[...document.querySelectorAll('.nav a')];
+  const links=[...document.querySelectorAll('.nav a[href^="#"]')];
   const secs=links.map((a)=>document.querySelector(a.getAttribute('href')));
   if('IntersectionObserver' in window){
     const io=new IntersectionObserver((es)=>{ es.forEach((en)=>{ if(en.isIntersecting){ links.forEach((a)=>a.classList.toggle('on', a.getAttribute('href')==='#'+en.target.id)); moveInd(); } }); },{rootMargin:'-45% 0px -50% 0px'});
